@@ -1,4 +1,31 @@
-# Instalación portable y evidencia — 20 de noviembre de 2026
+# Configuración de entrega — iniciadores nativos (20 de noviembre de 2026)
+
+La vía principal ya no requiere Docker. Windows usa iniciar.cmd; macOS/Linux usan sh iniciar.sh. macOS también dispone de iniciar.command. Los iniciadores descargan uv 0.13.9 con SHA256 fijado y Python 3.13.18 privado, sin PATH ni registro global, y ejecutan preparar.py. La preparación nativa vive en scripts/native_start.py; Docker sigue disponible como alternativa.
+
+## Preparación y comprobaciones
+
+- Dependencias en requirements-native.txt, entorno .runtime/venv. ONNX 1.23.2 solo para Mac Intel; ONNX 1.32 para el resto. Se mantiene el mismo E5 cuantizado y qwen3:4b, CPU, contexto 2048 y timeout 25 s.
+- Si no hay Ollama local disponible, se instala un binario privado 0.40.16, descargado con hash SHA256 por plataforma. No se habilitan servicios ni se cambian políticas de ejecución Windows. Los modelos propios quedan en .runtime/ollama-models.
+- Se ejecuta E5, se carga Qwen3 en CPU y se exige un plan real válido antes de arrancar el chat. El navegador solo se abre tras confirmar estado adaptativo/E5. Si falla la preparación no se declara éxito ni se abre modo básico como equivalente.
+- Al terminar se detienen solo los procesos iniciados por esta ejecución. Ollama preexistente se conserva. Un puerto ocupado provoca un error claro; --port permite elegir otro.
+
+## Evidencia de esta intervención
+
+- Linux/WSL x86_64: uv y Python 3.13.18 descargados y verificados, entorno nativo creado e instalación de dependencias real. Preparación e inferencia real Qwen3 correctas contra Ollama existente.
+- También se probó Ollama privado: descarga oficial Linux con SHA256 y extracción real. Tras corregir el selector de ejecutable se reutilizó el archivo oficial idéntico ya verificado para repetir extracción, sin una segunda descarga. El proceso propio se inició en otro puerto loopback con pesos de la prueba aislada anterior; no se repitió su descarga. Arranque de chat, estado adaptativo, E5/Qwen3 CPU y respuesta con citas comprobados por HTTP. Al salir se cerraron ambos puertos de prueba.
+- 86 unittest pasan; pruebas de errores, selección de plataforma, integridad de descarga y navegador bloqueado ante modo degradado son simuladas. Los modelos reales se comprueban por separado.
+- ONNX 1.23.2 instalado y E5 ejecutado realmente en Linux con Python 3.13, no en macOS. Ruedas de dependencias para Mac Intel/Python 3.13 descargadas y disponibilidad comprobada. ZIP uv Windows verificado por SHA256 y estructura (uv.exe en raíz), sin ejecutarlo en Windows.
+- Se preserva la matriz Excel original; no se repitió la evaluación de 300 consultas ni se igualan métricas de backends distintos sin medirlas.
+
+## Límites pendientes
+
+Windows y macOS, tanto Intel como Apple Silicon, necesitan ejecución real en esos sistemas; ARM64 tampoco se ejecutó aquí. El workflow incluye preparación nativa desde cero para Linux, Windows, Mac ARM y Mac Intel, pero solo sus resultados reales acreditan esas plataformas. Docker completo tampoco se ejecutó localmente.
+
+Requisitos: Windows 10 22H2+, macOS 14+ o Linux/WSL glibc 2.28+ de 64 bits, herramientas de descarga indicadas en README, internet y recursos suficientes. Una distribución Linux mínima puede necesitar bibliotecas del sistema. No se garantiza instalación en cualquier OS/hardware ni sobre restricciones corporativas.
+
+## Evidencia previa de la vía Docker (histórica)
+
+### Instalación portable y evidencia — 20 de noviembre de 2026
 
 ## Ruta de instalación
 
@@ -22,4 +49,4 @@ No se ejecutó Docker Engine/Compose completo en esta máquina, que no tiene Doc
 
 La matriz Excel conserva la corrida del 19 de noviembre; no se repitieron las 300 consultas. CPU, qwen3:4b, prompts, corpus, contexto 2048 y timeout de chat 25 s se preservan. La preparación permite 180 s de carga previa; el chat mantiene respaldo ante fallos y no promete tiempos de respuesta en cualquier equipo.
 
-La ruta nativa `preparar.py` es una alternativa solo Linux/WSL; no es la instalación portable principal.
+Esta limitación correspondía al preparador anterior; la sección vigente de iniciadores nativos al inicio sustituye esa restricción.

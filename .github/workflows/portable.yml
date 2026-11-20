@@ -44,3 +44,35 @@ jobs:
       - name: Limpiar entorno de prueba
         if: always()
         run: docker compose down --volumes
+  iniciadores-nativos:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar desde iniciador Windows
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: iniciar.cmd --prepare-only > native.log 2>&1
+      - name: Preparar desde iniciador macOS/Linux
+        if: runner.os != 'Windows'
+        run: sh iniciar.sh --prepare-only > native.log 2>&1
+      - name: Verificar código e integridad Windows
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          .runtime\venv\Scripts\python.exe -m unittest discover -s tests
+          .runtime\venv\Scripts\python.exe -m scripts.verify_package
+      - name: Verificar código e integridad macOS/Linux
+        if: runner.os != 'Windows'
+        run: |
+          .runtime/venv/bin/python -m unittest discover -s tests
+          .runtime/venv/bin/python -m scripts.verify_package
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iniciador-${{ matrix.os }}
+          path: native.log

@@ -2,45 +2,52 @@
 
 Ejercicio de evaluación: no es un canal oficial y no debe publicarse. Atiende Joy y Clásica, apertura y algunos servicios de MiCuenta/Switch, canales oficiales y seguridad. Responde en español e inglés con fichas y fuentes públicas locales; no accede a cuentas ni realiza trámites.
 
-## Instalación portable: Windows, macOS y Linux
+## Arranque nativo con iniciadores — sin Docker
 
-Las [instrucciones de tres líneas](INSTRUCCIONES.txt) usan **Docker Compose**. Docker instala y ejecuta Python, las dependencias, E5 y Ollama con `qwen3:4b` en contenedores Linux. No requiere Python, Ollama, rutas WSL ni modelos previamente instalados en el equipo anfitrión.
+1. Descarga y descomprime **toda** la carpeta del proyecto.
+2. Windows: abre `iniciar.cmd`. macOS/Linux: abre una terminal en la carpeta y ejecuta `sh iniciar.sh` (macOS también incluye `iniciar.command`).
+3. Espera la preparación y el navegador automático; si no se abre, usa la URL impresa. Mantén la terminal abierta; Ctrl+C detiene la demo.
+
+Estas son también las tres líneas de [INSTRUCCIONES.txt](INSTRUCCIONES.txt). La primera ejecución necesita internet y puede tardar varios minutos. No exige instalar Python, Ollama o Docker previamente: descarga uv 0.13.9 verificado por SHA256, prepara Python 3.13.18 y el entorno `.runtime/venv`, y descarga Ollama 0.40.16 privado si no encuentra un servicio local disponible. Los archivos pertenecen a esta carpeta: no requiere sudo, no altera PATH ni registra Python en Windows, no habilita servicios ni cambia las políticas de ejecución de Windows.
+
+### Sistemas y recursos
+
+- Windows 10 22H2 o posterior, de 64 bits x86_64/ARM64, con curl.exe y PowerShell 5 o posterior (incluidos en sistemas compatibles).
+- macOS 14 o posterior, Intel o Apple Silicon. Usa `sh iniciar.sh` si Finder no permite abrir `iniciar.command`; no se desactivan controles del sistema.
+- Linux/WSL de 64 bits x86_64/ARM64 con glibc 2.28+, shell, tar, curl o wget y sha256sum o shasum. Bibliotecas de CPU como libgomp/libstdc++ deben estar disponibles; una distribución mínima puede requerir instalarlas mediante su administrador. No se promete soporte para Alpine/musl.
+- Margen recomendado: 8 GB de RAM y 15 GB libres. Son márgenes de preparación, no mínimos medidos ni garantía de latencia en cualquier equipo. La primera ejecución descarga varios GB. Redes corporativas y políticas de instalación pueden bloquear descargas o ejecutables.
+
+Para Mac Intel se selecciona ONNX Runtime 1.23.2, que ofrece binarios para Python 3.13; los demás usan 1.32.0. `requirements-native.txt` fija las dependencias con marcadores por plataforma. Es el mismo E5 y el mismo Qwen3, pero los resultados de rendimiento/precisión del backend alternativo no deben asumirse idénticos a los de la matriz histórica.
+
+### Qué verifica el iniciador
+
+E5 se descarga con SHA256 y se ejecuta en CPU. Qwen3:4b se descarga, carga en CPU y debe devolver un plan JSON válido antes de abrir el chat. Si falla algún componente, el iniciador termina con error; no presenta el modo básico como si fuera el modo completo. El navegador solo se abre después de comprobar `/api/status` en modo adaptativo con E5 activo.
+
+Qwen3 interpreta consultas no resueltas por las rutas anteriores; las respuestas visibles se construyen con fichas y plantillas. Se conservan modelo, prompts, CPU, contexto 2048 y timeout del chat 25 s. La carga inicial permite 180 s; tras 20 min de inactividad puede activarse respaldo al recargar el modelo.
+
+Si ya hay Ollama en la URL local, se reutiliza y no se detiene al cerrar la demo. Si el iniciador crea Ollama, utiliza `.runtime/ollama-models`, escucha solo en loopback y lo detiene al salir. Log propio: `.runtime/ollama.log`. Los modelos E5 se conservan en `.models`. No hay rutas absolutas del autor en los iniciadores. `.gitattributes` conserva bytes del corpus incluso con Git en Windows.
+
+### Comandos de control
+
+```text
+sh iniciar.sh --port 8002
+sh iniciar.sh --prepare-only
+sh iniciar.sh --no-browser
+```
+
+En Windows los mismos argumentos se pasan a `iniciar.cmd`. `--prepare-only` instala y verifica, sin abrir el chat; detiene Ollama si lo inició. Una preparación posterior reutiliza las descargas. `preparar.py --check`, ejecutado con el Python del entorno, comprueba recursos sin descargar/iniciar servicios ni inferir con Qwen3; necesita Ollama activo (por ejemplo, durante la demo). Si el puerto está ocupado, cierra la otra instancia o usa `--port`; no se abre un servidor ajeno como si fuera esta demo.
+
+### Docker opcional
+
+Quien ya utilice Docker compatible puede seguir ejecutando:
 
 ```text
 docker compose up --build
 ```
 
-Espera a que aparezcan `VERIFICADO: E5 ejecutado y Qwen3 respondió con un plan válido en CPU` y `Prototipo local`. Abre http://127.0.0.1:8000. Si falla una descarga o un modelo, el arranque se detiene con error: no presenta el modo básico como si fuera el completo. Si el puerto 8000 está ocupado, cierra la otra instancia antes de iniciar.
+Docker usa su propio Python 3.14.4 y ONNX 1.32; las imágenes están fijadas por digest y las dependencias en `requirements-portable.lock`. Publica solo `127.0.0.1:8000`. `docker compose down` conserva sus volúmenes de modelos; `down --volumes` los elimina.
 
-### Requisitos del otro equipo
-
-- Windows o macOS compatibles con [Docker Desktop](https://docs.docker.com/compose/install/), o Linux compatible con Docker Engine y Compose v2. Docker debe usar contenedores Linux. Windows puede requerir WSL2/virtualización; Docker informa sus requisitos durante la instalación.
-- CPU de 64 bits x86_64 o ARM64 compatible con los motores de inferencia. La presencia de imágenes para ambas arquitecturas no sustituye una prueba de rendimiento en ese hardware.
-- Reserva recomendada para la demo: 8 GB de RAM para Docker, 15 GB de disco libre e internet para la primera construcción y descarga. Son márgenes operativos, no un mínimo de hardware medido. La demo puede ser más lenta en equipos modestos y agotar el límite de 25 s.
-- No se promete soporte para sistemas de 32 bits, móviles, equipos sin virtualización o sistemas que Docker no soporte. La portabilidad corresponde al entorno común de contenedores, no a cualquier sistema imaginable.
-
-Python y Ollama usan versiones y digests de imágenes fijados en Dockerfile/Compose; `requirements-portable.lock` fija las dependencias del entorno portable. E5 se verifica con SHA256; Qwen3 se descarga desde Ollama al volumen `ollama-models`. El volumen `e5-models` conserva E5. No se copian `.venv`, modelos, claves ni rutas del autor. `.gitattributes` conserva los bytes del corpus incluso al descargar con Git en Windows; `scripts.verify_package` comprueba el manifiesto de integridad. El único puerto publicado es `127.0.0.1:8000`; Ollama permanece en la red interna de Compose. No se publica el prototipo en internet.
-
-Qwen3 interpreta consultas no resueltas por rutas anteriores y devuelve un plan JSON validado. Las respuestas visibles usan fichas y plantillas. Se conserva CPU (`num_gpu: 0`), contexto 2048 y espera de chat de 25 s. La preparación permite hasta 180 s para cargar el modelo y comprueba inferencia real antes de abrir el chat. Una carga tras 20 minutos de inactividad puede activar el respaldo del chat; no se promete disponibilidad universal.
-
-### Comprobar, detener y volver a descargar
-
-```text
-docker compose ps
-docker compose exec app python -m scripts.container_start --health
-docker compose exec app python -m unittest discover -s tests
-docker compose exec app python -m scripts.verify_package
-docker compose logs app ollama
-docker compose down
-```
-
-`--health` verifica estado del chat, E5 activo y presencia de Qwen3; no es una nueva prueba de inferencia. `down` conserva modelos. `docker compose down --volumes` elimina **solo los volúmenes de este proyecto** y obliga a descargar de nuevo. Se puede descargar el repositorio en otra carpeta y repetir el arranque; para comprobar instalación inicial debe hacerse sin los volúmenes anteriores.
-
-La matriz Excel conserva los resultados de la corrida del 19 de noviembre; no debe presentarse como una nueva evaluación de contenedores. La evidencia actual de portabilidad y sus límites se documentan en [CONFIGURACION.md](docs/CONFIGURACION.md). El flujo `.github/workflows/portable.yml` permite verificar construcción y descarga desde cero en un runner Linux, además de pruebas del código en Windows/macOS/Linux. Un flujo incluido pero no ejecutado no acredita compatibilidad probada.
-
-### Alternativa nativa en Linux/WSL
-
-El preparador anterior `python3 preparar.py` sigue disponible únicamente para Linux/WSL con Python 3.11+ y venv. `--check` no instala ni descarga. No es la vía portable entre sistemas. Con ese entorno preparado, arranca con `./.venv/bin/python app.py --embeddings --ollama-model qwen3:4b`, sin sudo.
+La evidencia real, simulaciones y plataformas pendientes están en [CONFIGURACION.md](docs/CONFIGURACION.md). La matriz Excel conserva la evaluación del 19 de noviembre y no es una nueva medición de los iniciadores. El workflow incluye pruebas nativas por sistema; su presencia no acredita ejecución satisfactoria.
 
 Para ejecutar sin instalar componentes opcionales:
 
@@ -48,7 +55,7 @@ Para ejecutar sin instalar componentes opcionales:
 python3 app.py
 ```
 
-Este comando activa solo reglas y fichas locales; sus resultados se informan por separado. E5 sin Qwen3: `./.venv/bin/python app.py --embeddings`. Los modos usan el mismo código y corpus.
+Este comando activa solo reglas y fichas locales; sus resultados se informan por separado. E5 sin Qwen3: `./.runtime/venv/bin/python app.py --embeddings`. Los modos usan el mismo código y corpus.
 
 ## Evidencia y entregables
 
@@ -67,7 +74,7 @@ No se incluyen los reportes históricos mezclados con otras configuraciones ni a
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'
-./.venv/bin/python evaluate.py --embeddings --ollama-model qwen3:4b --output evaluation/nueva_corrida
+./.runtime/venv/bin/python evaluate.py --embeddings --ollama-model qwen3:4b --output evaluation/nueva_corrida
 ```
 
 La primera orden ejecuta pruebas sin requerir modelos, incluidas simulaciones de rutas y fallos. La segunda ejecuta inferencia real y audita las fuentes antes de comparar cuatro variantes sobre las mismas 75 preguntas. No mezcles una simulación con una medición de Qwen3. El lote contiene preguntas usadas durante el desarrollo; no representa una validación independiente.

@@ -16,3 +16,8 @@
 ## Portabilidad de la entrega — 20 de noviembre de 2026
 
 Por solicitud del usuario se añadió una vía Docker Compose para Windows/macOS/Linux compatibles con Docker, separada del preparador nativo Linux/WSL. Se mantuvieron Qwen3:4b, CPU, fichas, prompts y timeout de chat de 25 s. Se fijaron imágenes por digest y dependencias del entorno portable; la primera ejecución prepara E5 y Qwen3 y exige inferencia real válida antes de abrir el chat. Se utilizó Codex para implementación, pruebas y documentación. La evidencia y sus límites están en CONFIGURACION.md; la matriz Excel sigue correspondiendo a la evaluación del 19 de noviembre, no a una nueva corrida funcional.
+
+
+## Iniciadores nativos — 20 de noviembre de 2026
+
+Solicitud del usuario: evitar Docker obligatorio. Añadidos iniciar.cmd, iniciar.sh e iniciar.command; uv verificado prepara Python3.13 privado. El preparador detecta plataforma, instala dependencias y Ollama privado cuando hace falta y verifica E5/Qwen3 antes de abrir navegador. No se cambian prompts, fichas ni modelo. MacIntel usa ONNX1.23.2 por disponibilidad de binarios; se distingue esa variante de la evaluación histórica. Implementación y comprobaciones asistidas por Codex. Evidencia y límites en CONFIGURACION.md.
