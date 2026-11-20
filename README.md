@@ -46,6 +46,73 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 
 ---
 
+## Arquitectura por capas
+
+La interfaz y el motor se ejecutan localmente. Las flechas representan dependencias entre componentes; **E5 y Qwen3 interpretan consultas**, mientras las respuestas visibles se construyen con fichas y plantillas.
+
+```mermaid
+flowchart TB
+    subgraph L1[Presentación]
+        UI["Chat: HTML, CSS y JavaScript"]
+    end
+    subgraph L2[Servicio]
+        API["API HTTP local: app.py"]
+    end
+    subgraph L3[Aplicación]
+        ENGINE["Orquestación: engine.py"]
+        GUARDS["Alcance y contexto"]
+        ANSWERS["Respuestas y citas: answers.py"]
+    end
+    subgraph L4[Interpretación y recuperación]
+        RULES["Reglas de intención"]
+        SEARCH["Búsqueda SQLite FTS5"]
+        E5["E5: perfiles de apertura"]
+        LLM["Ollama / Qwen3: plan JSON"]
+    end
+    subgraph L5[Datos]
+        FACTS["Fichas JSON, fuentes y capturas HTML"]
+    end
+    UI --> API --> ENGINE
+    ENGINE --> GUARDS
+    ENGINE --> ANSWERS
+    ENGINE --> RULES
+    ENGINE --> SEARCH
+    ENGINE -. "Opcional" .-> E5
+    ENGINE -. "Opcional" .-> LLM
+    FACTS --> SEARCH
+    FACTS --> ANSWERS
+```
+
+### Flujo de una consulta
+
+El motor prioriza reglas y recuperación local. E5 se utiliza solo para consultas de apertura admitidas; Qwen3 recibe las consultas que siguen sin resolverse, si está activo. Un fallo del clasificador activa el respaldo local.
+
+```mermaid
+flowchart TD
+    Q["Consulta y contexto"] --> S{"¿Dentro del alcance?"}
+    S -- No --> LIMIT["Respuesta de límite"]
+    S -- Sí --> LOCAL["Reglas, contexto y búsqueda FTS5"]
+    LOCAL --> PLAN{"¿Plan resuelto?"}
+    PLAN -- Sí --> BUILD["Validar fichas y construir respuesta con plantillas"]
+    PLAN -- No --> ELIGIBLE{"¿E5 activo y apertura admitida?"}
+    ELIGIBLE -- Sí --> E5["Clasificar perfil de apertura"]
+    E5 --> CONF{"¿Cumple umbrales y canal?"}
+    CONF -- Sí --> BUILD
+    CONF -- No --> ACTIVE{"¿Qwen3 activo?"}
+    ELIGIBLE -- No --> ACTIVE
+    ACTIVE -- Sí --> LLM["Clasificar y validar plan JSON y contexto"]
+    LLM --> VALID{"¿Plan utilizable?"}
+    VALID -- Sí --> BUILD
+    VALID -- No --> SAFE["Aclaración o abstención"]
+    ACTIVE -- No --> SAFE
+    BUILD --> RESULT["Respuesta citada, aclaración o abstención según evidencia"]
+    RESULT --> CHAT["Mostrar resultado en el chat"]
+    SAFE --> CHAT
+    LIMIT --> CHAT
+```
+
+---
+
 ## Requisitos previos e instalación
 
 ### Requisitos
