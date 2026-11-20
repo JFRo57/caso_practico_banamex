@@ -1,0 +1,145 @@
+[
+  {
+    "id": "ACC1",
+    "block": "cuentas",
+    "question": "¿Cuánto cobra MiCuenta por manejo?",
+    "action": "answer",
+    "facts": [
+      "micuenta-fees"
+    ],
+    "contains": "$165 MXN"
+  },
+  {
+    "id": "ACC2",
+    "block": "cuentas",
+    "question": "Does Switch have a monthly fee?",
+    "action": "answer",
+    "facts": [
+      "switch-fees"
+    ],
+    "contains": "MXN $0",
+    "language": "en"
+  },
+  {
+    "id": "ACC3",
+    "block": "cuentas",
+    "question": "¿Cómo evito pagar comisiones en MiCuenta?",
+    "action": "answer",
+    "facts": [
+      "micuenta-fees"
+    ],
+    "contains": "tres meses consecutivos"
+  },
+  {
+    "id": "ACC4",
+    "block": "cuentas",
+    "question": "¿Qué cambia en las comisiones de MiCuenta en diciembre de 2026?",
+    "action": "answer",
+    "facts": [
+      "micuenta-fees"
+    ],
+    "contains": "$60 MXN"
+  },
+  {
+    "id": "ACC5",
+    "block": "cuentas",
+    "question": "Does my account have a maintenance fee?",
+    "action": "clarify",
+    "facts": [],
+    "contains": "MiCuenta or Switch",
+    "language": "en"
+  },
+  {
+    "id": "ACC6",
+    "block": "cuentas",
+    "question": "Switch",
+    "action": "answer",
+    "facts": [
+      "switch-fees"
+    ],
+    "contains": "MXN $0",
+    "followup": {
+      "topic": "account_fee",
+      "language": "en"
+    },
+    "language": "en"
+  },
+  {
+    "id": "ACC7",
+    "block": "cuentas",
+    "question": "¿Cómo activo MiCuenta?",
+    "action": "answer",
+    "facts": [
+      "micuenta-activation"
+    ],
+    "contains": "cajero Banamex"
+  },
+  {
+    "id": "ACC8",
+    "block": "cuentas",
+    "question": "How do I activate MiCuenta?",
+    "action": "answer",
+    "facts": [
+      "micuenta-activation"
+    ],
+    "contains": "Banamex ATM",
+    "language": "en"
+  },
+  {
+    "id": "ACC9",
+    "block": "cuentas",
+    "question": "¿Cómo habilito la cámara para abrir Switch?",
+    "action": "answer",
+    "facts": [
+      "account-camera"
+    ],
+    "contains": "ubicación"
+  },
+  {
+    "id": "ACC10",
+    "block": "cuentas",
+    "question": "How do I allow camera access when opening Switch?",
+    "action": "answer",
+    "facts": [
+      "account-camera"
+    ],
+    "contains": "location",
+    "language": "en"
+  },
+  {
+    "id": "ACC11",
+    "block": "cuentas",
+    "question": "¿Cuál es la comisión de MiCuenta vigente hoy?",
+    "action": "abstain",
+    "facts": [],
+    "contains": null
+  },
+  {
+    "id": "ACC12",
+    "block": "cuentas",
+    "question": "Mi NIP es 1234, ¿cómo activo MiCuenta?",
+    "action": "abstain",
+    "facts": [],
+    "contains": null,
+    "redact": true,
+    "forbidden": [
+      "1234"
+    ]
+  },
+  {
+    "id": "ACC13",
+    "block": "cuentas",
+    "question": "¿Cuánto cobran por reponer mi tarjeta Switch?",
+    "action": "abstain",
+    "facts": [],
+    "contains": null
+  },
+  {
+    "id": "ACC14",
+    "block": "cuentas",
+    "question": "¿Cuánto cuesta una transferencia con Switch?",
+    "action": "abstain",
+    "facts": [],
+    "contains": null
+  }
+]

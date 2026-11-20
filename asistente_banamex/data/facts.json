@@ -1,0 +1,494 @@
+{
+  "snapshot": "2026-11-18",
+  "sources": {
+    "joy": {
+      "title": "Costos y comisiones de Joy",
+      "url": "https://www.banamex.com/personas/tarjetas-de-credito/tarjeta-joy-sin-anualidad/tarifas-y-comisiones",
+      "date": "2026-11-17",
+      "file": "raw/joy.html",
+      "sha256": "414c3e723bfe7e0428c89aac7706675f8266853e49c0fec6ad22153087ca72f1"
+    },
+    "clasica": {
+      "title": "Costos y comisiones de Clásica",
+      "url": "https://www.banamex.com/personas/tarjetas-de-credito/tarjeta-clasica/tarifas-y-comisiones",
+      "date": "2026-11-17",
+      "file": "raw/clasica.html",
+      "sha256": "78867446e26ffd66574c8db417696a4ecf6053ed5a8d75b241ab744b24dd3a97"
+    },
+    "joy-producto": {
+      "title": "Tarjeta Joy Banamex",
+      "url": "https://www.banamex.com/personas/tarjetas-de-credito/tarjeta-joy-sin-anualidad",
+      "date": "2026-11-17",
+      "file": "raw/joy-producto.html",
+      "sha256": "35175f5051381507000fc2a50dbede624c0fbc7c41922c01a53014892b852e38"
+    },
+    "clasica-producto": {
+      "title": "Tarjeta Clásica Banamex",
+      "url": "https://www.banamex.com/personas/tarjetas-de-credito/tarjeta-clasica",
+      "date": "2026-11-17",
+      "file": "raw/clasica-producto.html",
+      "sha256": "3911d6ee6b36ba7d95c651b256a80f056139ce926dbbcfee883f5eb0b96d5a30"
+    },
+    "requisitos": {
+      "title": "Requisitos para solicitar tarjeta de crédito",
+      "url": "https://www.banamex.com/centro-de-ayuda/tarjetas/requisitos-para-tarjetas-de-credito",
+      "date": "2026-11-17",
+      "file": "raw/requisitos.html",
+      "sha256": "bc869f63001edffa7e59ce61aa911efd7a6218ca23f6e58f3ae40db6e780c2d0"
+    },
+    "telefonos": {
+      "title": "Teléfonos Banamex",
+      "url": "https://www.banamex.com/telefonos-banamex",
+      "date": "2026-11-17",
+      "file": "raw/telefonos.html",
+      "sha256": "482a0357e3aa163e3b4e752392096bd03bb2db23ce836f330c81eb6c352f7ef1"
+    },
+    "seguridad": {
+      "title": "Centro de Seguridad Banamex",
+      "url": "https://www.banamex.com/centro-de-seguridad",
+      "date": "2026-11-17",
+      "file": "raw/seguridad.html",
+      "sha256": "87df440fcf965786bbc9ce7670030128f734324e2ddc7e4b4ff7478deddbaed8"
+    },
+    "localizador": {
+      "title": "Localizador de sucursales",
+      "url": "https://www.banamex.com/localizador-de-sucursales",
+      "date": "2026-11-17",
+      "file": "raw/localizador.html",
+      "sha256": "f5e8fc8fd1632b4865c0eff9053e927fb3c5b3bf83eb49d386b84e992551cc7e"
+    },
+    "micuenta-debito": {
+      "title": "Cuenta de Débito MiCuenta | Banamex",
+      "url": "https://www.banamex.com/personas/cuentas/micuenta-debito",
+      "date": "2026-11-18",
+      "file": "raw/micuenta-debito.html",
+      "sha256": "9aadbc065d7c067058b96c74431f77906361d9a2a1abec94829c13b9c76f8b8b"
+    },
+    "switch-producto": {
+      "title": "Cuenta Digital Switch | Banamex",
+      "url": "https://www.banamex.com/personas/cuentas/cuenta-digital-switch",
+      "date": "2026-11-18",
+      "file": "raw/switch-producto.html",
+      "sha256": "2b785a4d9c071f606c6e58b4097154978c7ec3fc29aaad3186d48a767e34719c"
+    },
+    "switch-apertura": {
+      "title": "Cómo abrir Switch en línea | Banamex",
+      "url": "https://www.banamex.com/centro-de-ayuda/cuentas/apertura-de-cuentas-en-linea/apertura",
+      "date": "2026-11-18",
+      "file": "raw/switch-apertura.html",
+      "sha256": "b06a0b4804104cf59c4415267a4f804aea2fe28dee634ad9d62e63d91405ee8b"
+    },
+    "cat": {
+      "title": "Características de las tarjetas de crédito",
+      "url": "https://www.banamex.com/centro-de-ayuda/tarjetas/caracteristicas-de-las-tarjetas-de-credito",
+      "date": "2026-11-17",
+      "file": "raw/cat.html",
+      "sha256": "cf5ebee6697764488fcc6237bf611f010e7efe4567134a0f244863ba49db0098"
+    },
+    "micuenta-debito-review": {
+      "title": "Cuenta de Débito MiCuenta | Banamex",
+      "url": "https://www.banamex.com/personas/cuentas/micuenta-debito",
+      "date": "2026-11-18",
+      "file": "raw/micuenta-debito-20261118.html",
+      "sha256": "9aadbc065d7c067058b96c74431f77906361d9a2a1abec94829c13b9c76f8b8b"
+    },
+    "switch-producto-review": {
+      "title": "Cuenta Digital Switch | Banamex",
+      "url": "https://www.banamex.com/personas/cuentas/cuenta-digital-switch",
+      "date": "2026-11-18",
+      "file": "raw/switch-producto-20261118.html",
+      "sha256": "2b785a4d9c071f606c6e58b4097154978c7ec3fc29aaad3186d48a767e34719c"
+    },
+    "switch-apertura-review": {
+      "title": "Cómo abrir Switch en línea | Banamex",
+      "url": "https://www.banamex.com/centro-de-ayuda/cuentas/apertura-de-cuentas-en-linea/apertura",
+      "date": "2026-11-18",
+      "file": "raw/switch-apertura-20261118.html",
+      "sha256": "b06a0b4804104cf59c4415267a4f804aea2fe28dee634ad9d62e63d91405ee8b"
+    }
+  },
+  "facts": [
+    {
+      "id": "account_branch",
+      "topic": "account_branch",
+      "source": "micuenta-debito",
+      "section": "Abre tu cuenta en la sucursal más cercana",
+      "keywords": "micuenta banamex débito apertura documentos requisitos sucursal debit account opening requirements documents branch",
+      "evidence": [
+        "Si eres mexicano Identificación Oficial vigente (INE). Comprobante de domicilio",
+        "no mayor a 3 meses. CURP (Clave Única de Registro de Población) Solo si la credencial para votar no incluye este dato.",
+        "Registro Federal de Contribuyentes (RFC) Sólo personas físicas con actividad empresarial.",
+        "Monto mínimo de apertura: $1,000 Para cuenta de nómina: $0",
+        "Si eres extranjero Pasaporte Forma migratoria CURP (Clave Única de Registro de Población) Solo si la tarjeta de residente no incluye este dato."
+      ],
+      "text": {
+        "es": "Para abrir MiCuenta de débito en sucursal, Banamex pide a personas mexicanas una INE vigente, un comprobante de domicilio de hasta tres meses y la CURP si no aparece en la INE. Para personas extranjeras, la ficha indica pasaporte, forma migratoria y CURP si no aparece en la tarjeta de residente. También indica RFC para personas físicas con actividad empresarial. El depósito mínimo de apertura publicado es de $1,000 MXN ($0 MXN para cuenta de nómina).",
+        "en": "To open a MiCuenta debit account at a branch, Banamex lists a valid INE voter ID and proof of address no more than three months old for Mexican applicants. Bring your CURP if it is missing from your voter ID. For foreign applicants, the page lists a passport, an immigration document and a CURP if it is missing from your residency card. It also lists an RFC tax ID for individuals with business activity. The published minimum opening deposit is MXN $1,000 (MXN $0 for payroll accounts)."
+      }
+    },
+    {
+      "id": "account_online",
+      "topic": "account_online",
+      "source": "switch-apertura",
+      "section": "Cómo Aperturar Switch Banamex en Línea",
+      "keywords": "switch abrir cuenta digital en línea celular navegador online browser mobile app debit account",
+      "evidence": [
+        "solo ingresa a www.banamex.com/switch y sigue los pasos",
+        "actives los permisos de ubicación y cámara",
+        "navegador que estás utilizando (Safari o Chrome)",
+        "Fotografía de tu INE/IFE y selfie. Datos personales y de tu empleo."
+      ],
+      "text": {
+        "es": "La Cuenta Digital Switch se puede abrir sin ir a una sucursal. Banamex indica iniciar el trámite en banamex.com/switch desde el navegador del celular, con permisos de cámara y ubicación. El trámite solicita una foto de tu identificación, una selfie y datos de contacto y empleo.",
+        "en": "The Switch Digital Account can be opened without visiting a branch. Banamex directs you to start at banamex.com/switch in your phone’s browser and allow camera and location access. The application asks for a photo of your ID, a selfie, and contact and employment details."
+      }
+    },
+    {
+      "id": "switch-requirements",
+      "topic": "account_online",
+      "source": "switch-producto",
+      "section": "Requisitos de contratación y preguntas frecuentes",
+      "keywords": "switch documentos ine curp requisitos debit account requirements documents",
+      "evidence": [
+        "Sólo necesitas tu INE y tu CURP (Clave Única de Registro de Población)",
+        "Monto de apertura: $0",
+        "Cualquier persona mexicana mayor de 18 años que viva en México puede abrir una Cuenta Switch Banamex."
+      ],
+      "text": {
+        "es": "Switch está disponible para personas mexicanas mayores de 18 años que viven en México. Banamex pide INE y CURP y publica un monto de apertura de $0 MXN.",
+        "en": "Switch is available to Mexican nationals over 18 who live in Mexico. Banamex lists an INE voter ID and a CURP. The published opening deposit is MXN $0."
+      }
+    },
+    {
+      "id": "joy-annual",
+      "topic": "annual",
+      "source": "joy",
+      "section": "Administración de tarjeta titular",
+      "keywords": "joy anualidad administración annual fee",
+      "evidence": [
+        "Sin comisión por administración de Tarjeta Titular",
+        "$0"
+      ],
+      "product": "joy",
+      "amount_cents": 0,
+      "currency": "MXN",
+      "tax": "before_vat",
+      "period": "year"
+    },
+    {
+      "id": "clasica-annual",
+      "topic": "annual",
+      "source": "clasica",
+      "section": "Administración de tarjeta titular, CAT y nota (1)",
+      "keywords": "clasica anualidad administración annual fee",
+      "evidence": [
+        "$67.92 Sin IVA cada mes",
+        "Comisión por Administración $815 Sin IVA",
+        "antes del 30 de julio de 2026"
+      ],
+      "product": "clasica",
+      "amount_cents": 81500,
+      "monthly_cents": 6792,
+      "currency": "MXN",
+      "tax": "before_vat",
+      "period": "year",
+      "transition_date": "2026-07-30"
+    },
+    {
+      "id": "joy-inactivity",
+      "topic": "inactivity",
+      "source": "joy",
+      "section": "Penalización por inactividad, nota (1)",
+      "keywords": "joy cargo no usar gasto minimo compras inactivity fee",
+      "evidence": [
+        "$149.00 al mes",
+        "al mes y exenta la Comisión de Penalización por inactividad de $149.00 Sin IVA"
+      ],
+      "product": "joy",
+      "amount_cents": 14900,
+      "minimum_cents": 30000,
+      "currency": "MXN",
+      "tax": "before_vat",
+      "period": "month"
+    },
+    {
+      "id": "joy-cat",
+      "topic": "cat",
+      "source": "joy",
+      "section": "CAT promedio",
+      "keywords": "joy cat costo anual total tasa",
+      "evidence": [
+        "CAT PROMEDIO 81.2%",
+        "Calculado el 27 de julio de 2026 y vigente al 27 de enero de 2027"
+      ],
+      "product": "joy",
+      "percent": "81.2",
+      "valid_from": "2026-07-27",
+      "valid_to": "2027-01-27",
+      "tax": "before_vat"
+    },
+    {
+      "id": "joy-income",
+      "topic": "income",
+      "source": "joy-producto",
+      "section": "Requisitos para solicitarla",
+      "keywords": "joy requisito ingreso mínimo mensual minimum income",
+      "evidence": [
+        "$7,000 de ingreso mensual mínimo comprobable"
+      ],
+      "product": "joy",
+      "amount_cents": 700000,
+      "currency": "MXN",
+      "period": "month"
+    },
+    {
+      "id": "joy-requirements",
+      "topic": "requirements",
+      "source": "joy-producto",
+      "section": "Requisitos para solicitarla",
+      "keywords": "joy requisitos solicitud identificación residencia comprobante",
+      "evidence": [
+        "Para mexicanos: INE. Para extranjeros: tarjeta de residente (temporal o permanente) y pasaporte.",
+        "no mayor a 3 meses"
+      ],
+      "product": "joy",
+      "text": {
+        "es": "La ficha de Joy pide identificación oficial vigente (INE para mexicanos, o tarjeta de residente y pasaporte para extranjeros) y comprobante de domicilio de hace no más de tres meses.",
+        "en": "The Joy page lists valid identification (INE for Mexican applicants, or a resident card and passport for foreign nationals) and a proof of address no more than three months old."
+      }
+    },
+    {
+      "id": "clasica-cat",
+      "topic": "cat",
+      "source": "clasica",
+      "section": "CAT promedio",
+      "keywords": "clasica cat costo anual total tasa",
+      "evidence": [
+        "CAT PROMEDIO 86.2%",
+        "Calculado el 27 de julio de 2026 y vigente al 27 de enero de 2027"
+      ],
+      "product": "clasica",
+      "percent": "86.2",
+      "valid_from": "2026-07-27",
+      "valid_to": "2027-01-27",
+      "tax": "before_vat"
+    },
+    {
+      "id": "clasica-income",
+      "topic": "income",
+      "source": "clasica-producto",
+      "section": "Requisitos para solicitarla",
+      "keywords": "clasica requisito ingreso mínimo mensual minimum income",
+      "evidence": [
+        "$7,000 de ingreso mensual mínimo comprobable"
+      ],
+      "product": "clasica",
+      "amount_cents": 700000,
+      "currency": "MXN",
+      "period": "month"
+    },
+    {
+      "id": "clasica-requirements",
+      "topic": "requirements",
+      "source": "clasica-producto",
+      "section": "Requisitos para solicitarla",
+      "keywords": "clasica requisitos solicitud identificación residencia comprobante",
+      "evidence": [
+        "Para mexicanos: INE. Para extranjeros: tarjeta de residente (temporal o permanente) y pasaporte.",
+        "no mayor a 3 meses"
+      ],
+      "product": "clasica",
+      "text": {
+        "es": "La ficha de Clásica pide identificación oficial vigente (INE para mexicanos, o tarjeta de residente y pasaporte para extranjeros) y comprobante de domicilio de hace no más de tres meses.",
+        "en": "The Clásica page lists valid identification (INE for Mexican applicants, or a resident card and passport for foreign nationals) and a proof of address no more than three months old."
+      }
+    },
+    {
+      "id": "joy-benefit",
+      "topic": "benefit",
+      "source": "joy-producto",
+      "section": "Solicitud de tarjeta Joy",
+      "keywords": "joy beneficio solicitud digital",
+      "evidence": [
+        "Escanea y hazlo desde tu celular, es 100% digital."
+      ],
+      "product": "joy",
+      "text": {
+        "es": "Joy ofrece solicitud digital desde el celular.",
+        "en": "Joy offers a digital application from your phone."
+      }
+    },
+    {
+      "id": "clasica-benefit",
+      "topic": "benefit",
+      "source": "clasica-producto",
+      "section": "Puntos Premia",
+      "keywords": "clasica beneficio puntos premia",
+      "evidence": [
+        "Cada vez que utilices tu tarjeta ganas 5% en Puntos Premia"
+      ],
+      "product": "clasica",
+      "text": {
+        "es": "Clásica acumula Puntos Premia con las compras.",
+        "en": "Clásica earns Puntos Premia rewards on purchases."
+      }
+    },
+    {
+      "id": "requirements",
+      "topic": "requirements",
+      "source": "requisitos",
+      "section": "Requisitos en sucursal y en línea",
+      "keywords": "tarjeta credito requisitos documentos solicitud identificación",
+      "evidence": [
+        "Ser mayor de 18 años de edad y menor de 74 años y 11 meses.",
+        "Comprobante de ingresos (no aplica Aprobación Segura). Comprobante de domicilio."
+      ],
+      "text": {
+        "es": "Los requisitos generales publicados incluyen ser mayor de 18 años y menor de 74 años y 11 meses, cumplir el ingreso mínimo del producto y presentar identificación vigente, comprobante de domicilio y comprobante de ingresos (excepto en Aprobación Segura). En línea también debes completar la solicitud. Consulta la ficha de la tarjeta para los documentos específicos.",
+        "en": "The published general requirements include being over 18 and under 74 years and 11 months old, meeting the card’s minimum income and providing valid ID, proof of address and proof of income (except with Aprobación Segura). An online application also has to be completed. Check the specific card page for its documentation."
+      }
+    },
+    {
+      "id": "cat_definition",
+      "topic": "cat_definition",
+      "source": "cat",
+      "section": "¿Qué significa CAT?",
+      "keywords": "que es cat significa costo anual total what does cat stand for",
+      "evidence": [
+        "Es el Costo Anual Total (CAT) integra el total de los costos asociados a tu crédito"
+      ],
+      "text": {
+        "es": "CAT significa Costo Anual Total. Expresa en un porcentaje los costos de un crédito, como intereses y comisiones, y ayuda a comparar créditos similares.",
+        "en": "CAT means Costo Anual Total, or total annual cost. It expresses credit costs, such as interest and fees, as a percentage so you can compare similar products."
+      }
+    },
+    {
+      "id": "phone",
+      "topic": "phone",
+      "source": "telefonos",
+      "section": "Audiomático y atención de tarjetas",
+      "keywords": "teléfono horario asistencia audio automático phone support hours",
+      "evidence": [
+        "Audiomático 24 horas, 7 días a la semana",
+        "Lunes a domingo de 7:00 a 22:00 h",
+        "1 800 226 2639"
+      ],
+      "text": {
+        "es": "La línea nacional es 55 1226 2639. El Audiomático está disponible las 24 horas todos los días. Para tarjetas de crédito, la página indica atención con ejecutivos de lunes a domingo de 7:00 a 22:00 h. Desde EUA y Canadá, la página publica 1 800 226 2639 para el Audiomático.",
+        "en": "The Mexico line is 55 1226 2639. The automated phone service runs 24/7. For credit cards, the bank lists live service from 7:00 to 22:00, Monday through Sunday. From the U.S. and Canada, its automated service number is 1 800 226 2639."
+      }
+    },
+    {
+      "id": "branch",
+      "topic": "branch",
+      "source": "localizador",
+      "section": "Localizador Banamex",
+      "keywords": "sucursal localizador banco cajero mapa sucursal mas cercana nearest branch locator",
+      "evidence": [
+        "Utiliza nuestro buscador para encontrar Sucursales, Cajeros"
+      ],
+      "text": {
+        "es": "Abre el Localizador Banamex en la fuente de abajo. Puedes buscar sucursales y cajeros y consultar sus horarios y servicios.",
+        "en": "Open the official Banamex locator below to find branches and ATMs and see their hours and services."
+      }
+    },
+    {
+      "id": "pin",
+      "topic": "pin",
+      "source": "seguridad",
+      "section": "Datos sensibles y llamadas",
+      "keywords": "nip seguridad telefonica pedir por telefono pin bank safety",
+      "evidence": [
+        "Nunca pediremos datos sensibles como tu NIP, contraseñas"
+      ],
+      "text": {
+        "es": "Banamex advierte que no te pedirá tu NIP ni tus contraseñas en una llamada. Si alguien los solicita, no los compartas.",
+        "en": "Banamex says it will not ask for your PIN or passwords when calling you. If someone asks, keep those details private."
+      }
+    },
+    {
+      "id": "charge",
+      "topic": "charge",
+      "source": "seguridad",
+      "section": "Cargo no reconocido",
+      "keywords": "cargo no reconozco desconocido aclaracion tarjeta fraude unauthorized charge dispute",
+      "evidence": [
+        "Bloquea de manera inmediata tus tarjetas",
+        "Comunícate al número al reverso de tu tarjeta para levantar una aclaración"
+      ],
+      "text": {
+        "es": "Si detectas un cargo que no reconoces, Banamex indica bloquear la tarjeta desde App Banamex o BancaNet y llamar al número del reverso para reportarlo.",
+        "en": "If you spot a charge you do not recognize, Banamex says to lock the card in the Banamex app or BancaNet and call the number on the back to report it."
+      }
+    },
+    {
+      "id": "switch-fees",
+      "topic": "switch_fees",
+      "source": "switch-producto-review",
+      "section": "Comisión por manejo de cuenta y apertura",
+      "keywords": "Comisión por manejo de cuenta y apertura",
+      "evidence": [
+        "$0 de Comisión por manejo de cuenta* Sin tener que mantener saldo mínimo.",
+        "Monto de apertura: $0"
+      ],
+      "text": {
+        "es": "Switch publica $0 MXN de comisión por manejo de cuenta, sin saldo mínimo. El monto de apertura publicado es $0 MXN. Esta ficha cubre manejo y apertura. Para otras comisiones, consulta el tarifario oficial.",
+        "en": "Switch lists an account maintenance fee of MXN $0, with no minimum balance. The published opening deposit is MXN $0. This fact covers maintenance and opening. Check the official fee schedule for other charges."
+      }
+    },
+    {
+      "id": "micuenta-fees",
+      "topic": "micuenta_fees",
+      "source": "micuenta-debito-review",
+      "section": "Planes de Saldo y Renta, exenciones y notas (5), (6), (7)",
+      "keywords": "Planes de Saldo y Renta, exenciones y notas (5), (6), (7)",
+      "evidence": [
+        "La comisión de $165+ iva se cobrará mensualmente si no cubre el saldo integral requerido de $4,000.",
+        "Importante a partir del 1° de diciembre de 2026, el saldo integral requerido será de $5,000.",
+        "$50*** al realizar máximo 4 retiros sin transacción en App Banamex® o BancaNet.",
+        "$50*** al realizar entre 5 y 8 retiros.",
+        "$70 al realizar 9 retiros o más.",
+        "*** A partir del 1° de diciembre de 2026, esta comisión será de $60.",
+        "Al recibir tu nómina",
+        "Si durante 3 meses consecutivos no se reciben abonos en la cuenta por depósitos de nómina serán aplicables las comisiones de acuerdo al esquema contratado.",
+        "$0 al realizar hasta 4 retiros de efectivo en Cajeros Automáticos Banamex y hacer un pago o traspaso"
+      ],
+      "text": {
+        "es": "MiCuenta, según la captura del 18 de noviembre de 2026. Plan de Saldo: exentas manteniendo un saldo integral de $4,000 MXN durante el periodo de corte, considerando MiCuenta, Ahorro Fácil y Pagaré según la fórmula de la fuente. Si no lo cumples, la comisión publicada es $165 MXN mensuales más IVA. Desde el 1 de diciembre de 2026 el saldo requerido será $5,000 MXN.\n\nPlan de Renta: $0 MXN con hasta cuatro retiros en cajeros Banamex y un pago o traspaso desde MiCuenta en App Banamex o BancaNet. La página publica $50 MXN con hasta cuatro retiros sin esa transacción, o entre cinco y ocho retiros, y $70 MXN con nueve o más. Los cargos de $50 pasan a $60 MXN desde el 1 de diciembre de 2026.\n\nRecibir nómina exenta ambos planes. Si transcurren tres meses consecutivos sin abonos de nómina, se aplican las comisiones del plan contratado. Consulta las condiciones completas de la fuente. No puedo determinar qué cargo corresponde a tu cuenta personal.",
+        "en": "MiCuenta, based on the November 18, 2026 snapshot. Balance Plan: the fee is waived with an integrated balance of MXN $4,000 during the statement period, counting MiCuenta, Ahorro Fácil and Pagaré according to the source formula. Otherwise the published monthly fee is MXN $165 plus VAT. From December 1, 2026 the required balance becomes MXN $5,000.\n\nRent Plan: MXN $0 with up to four Banamex ATM withdrawals and a payment or transfer from MiCuenta through App Banamex or BancaNet. The page lists MXN $50 for up to four withdrawals without that transaction, or five to eight withdrawals, and MXN $70 for nine or more. The MXN $50 charges become MXN $60 from December 1, 2026.\n\nReceiving payroll waives both plans. After three consecutive months without payroll deposits, the contracted plan fees apply. Check all conditions in the source. I cannot determine the charge for your personal account."
+      }
+    },
+    {
+      "id": "account-camera",
+      "topic": "account_camera",
+      "source": "switch-apertura-review",
+      "section": "Permisos de cámara y ubicación para apertura de Switch",
+      "keywords": "Permisos de cámara y ubicación para apertura de Switch",
+      "evidence": [
+        "Para abrir tu cuenta es necesario que actives los permisos de ubicación y cámara.",
+        "Actualiza la página del navegador para que los permisos se apliquen.",
+        "Cierra la aplicación para que los permisos se apliquen y ábrelo de nuevo para continuar.",
+        "descubre tu rostro, no uses lentes, gorra o sombrero y busca una buena iluminación."
+      ],
+      "text": {
+        "es": "La apertura de Switch requiere permisos de cámara y ubicación en el navegador del celular. En iOS revisa los permisos de Safari o Chrome en Configuración. En Android revisa Ajustes, Aplicaciones, tu navegador y Permisos. Después actualiza la página o vuelve a abrir el navegador. Para la selfie, descubre el rostro, evita lentes y gorra y busca buena iluminación. Realiza la captura solo en el sitio oficial.",
+        "en": "Opening Switch requires camera and location permission in your phone browser. On iOS check Safari or Chrome permissions in Settings. On Android open Settings, Apps, your browser and Permissions. Then refresh the page or reopen the browser. For your selfie, keep your face uncovered, remove glasses and hats and use good lighting. Submit the photo only on the official site."
+      }
+    },
+    {
+      "id": "micuenta-activation",
+      "topic": "micuenta_activation",
+      "source": "micuenta-debito-review",
+      "section": "Cómo activar la Tarjeta de Débito",
+      "keywords": "Cómo activar la Tarjeta de Débito",
+      "evidence": [
+        "Una vez que tengas tu tarjeta, solo realiza una consulta en cualquier cajero automático Banamex con tu NIP y recuerda cambiarlo por otro de 4 dígitos.",
+        "Si no tienes tu NIP, puedes obtenerlo en cualquier sucursal Banamex."
+      ],
+      "text": {
+        "es": "Para activar la tarjeta de débito de MiCuenta, la página indica realizar una consulta en un cajero Banamex con tu NIP y cambiarlo por uno de cuatro dígitos. Si no tienes NIP, acude a una sucursal Banamex. Introduce tu NIP únicamente en el canal oficial y evita compartirlo en este chat.",
+        "en": "To activate a MiCuenta debit card, the bank page instructs you to make an inquiry at a Banamex ATM using your PIN and change it to a four-digit PIN. If you do not have a PIN, visit a Banamex branch. Enter your PIN only through the official channel and keep it out of this chat."
+      }
+    }
+  ]
+}

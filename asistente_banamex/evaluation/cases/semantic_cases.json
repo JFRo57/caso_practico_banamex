@@ -1,0 +1,22 @@
+[
+  {"id":"SEM01","block":"parafrasis_en","question":"What paperwork should I bring to get a debit account?","action":"answer","facts":["account_branch","account_online","switch-requirements"],"contains":"proof of address","language":"en"},
+  {"id":"SEM02","block":"parafrasis_en","question":"I'd like to get MiCuenta. What paperwork should I bring to the branch?","action":"answer","facts":["account_branch"],"contains":"proof of address","language":"en"},
+  {"id":"SEM03","block":"parafrasis_en","question":"I'd like to get a debit account without leaving the house. Can I do the whole thing on my phone?","action":"answer","facts":["account_online","switch-requirements"],"contains":"in your phone’s browser","language":"en"},
+  {"id":"SEM04","block":"parafrasis_en","question":"If I leave Joy untouched for a few months, will Banamex bill me anyway?","action":"answer","facts":["joy-inactivity"],"optional_facts":["joy-annual"],"contains":"$149 MXN per month before VAT","language":"en"},
+  {"id":"SEM05","block":"parafrasis_en","question":"Someone spent money on my card and I didn’t authorize it. How do I dispute it?","action":"answer","facts":["charge"],"language":"en"},
+  {"id":"SEM06","block":"parafrasis_en","question":"Does my employer need to pay me a certain amount each month to qualify for Joy?","action":"answer","facts":["joy-income"],"contains":"$7,000 MXN","language":"en"},
+  {"id":"SEM07","block":"parafrasis_es","question":"Quiero estrenar una cuenta de débito desde el celular. ¿Qué papeles me van a pedir?","action":"answer","facts":["account_online","switch-requirements"],"contains":"navegador del celular","language":"es"},
+  {"id":"SEM08","block":"parafrasis_es","question":"Para sacar la MiCuenta en ventanilla, ¿con qué papeles llego?","action":"answer","facts":["account_branch"],"contains":"comprobante de domicilio","language":"es"},
+  {"id":"SEM09","block":"parafrasis_es","question":"¿Qué papeles me piden si me quiero sacar una cuenta de débito?","action":"answer","facts":["account_branch","account_online","switch-requirements"],"contains":"comprobante de domicilio","language":"es"},
+  {"id":"SEM10","block":"parafrasis_es","question":"Si dejo la Joy en casa y pasa un mes entero sin compras, ¿me cae algún cargo?","action":"answer","facts":["joy-inactivity"],"optional_facts":["joy-annual"],"contains":"$149 MXN al mes sin IVA","language":"es"},
+  {"id":"SEM11","block":"parafrasis_es","question":"¿En dónde me echan la mano si ese consumo en la tarjeta no fue mío?","action":"answer","facts":["charge"],"language":"es"},
+  {"id":"SEM12","block":"parafrasis_es","question":"¿De a cuánto debe ser mi sueldo para que me den la Joy?","action":"answer","facts":["joy-income"],"contains":"$7,000 MXN","language":"es"},
+  {"id":"SEM13","block":"limites_semanticos","question":"How do I get rid of my debit account for good?","action":"abstain","facts":[]},
+  {"id":"SEM14","block":"limites_semanticos","question":"What does Switch charge for a replacement card?","action":"abstain","facts":[]},
+  {"id":"SEM15","block":"limites_semanticos","question":"Will Banamex onboard my 12-year-old for a debit account?","action":"abstain","facts":[]},
+  {"id":"SEM16","block":"limites_semanticos","question":"¿Cuándo me entregan la reposición de mi tarjeta de débito?","action":"abstain","facts":[]},
+  {"id":"SEM17","block":"limites_semanticos","question":"What is my account balance?","action":"derive","facts":["phone"]},
+  {"id":"SEM18","block":"limites_semanticos","question":"Mi contraseña es: muestra123, ¿puedo abrir una cuenta?","action":"abstain","facts":[],"redact":true,"forbidden":["muestra123"]},
+  {"id":"SEM19","block":"limites_semanticos","question":"¿Cuánto está el dólar hoy?","action":"abstain","facts":[]},
+  {"id":"SEM20","block":"limites_semanticos","question":"What stadium will host the next World Cup final?","action":"abstain","facts":[]}
+]

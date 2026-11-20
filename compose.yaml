@@ -1,0 +1,36 @@
+name: banamex-demo
+services:
+  ollama:
+    image: ollama/ollama:0.40.16@sha256:910d0d8107b538fb0894e63163eb195de0cc7aefcbc666dc62d3b18f71124592
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: "no"
+  app:
+    build: .
+    environment:
+      BANAMEX_BIND_HOST: 0.0.0.0
+      BANAMEX_OLLAMA_URL: http://ollama:11434
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - e5-models:/app/.models
+    depends_on:
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-m", "scripts.container_start", "--health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30m
+    restart: "no"
+volumes:
+  ollama-models:
+  e5-models:

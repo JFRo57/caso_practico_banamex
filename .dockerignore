@@ -1,0 +1,13 @@
+.git
+.venv
+.models
+.runtime
+dist
+__pycache__
+**/__pycache__
+*.pyc
+*.zip
+.env
+.env.*
+*.pem
+*.key

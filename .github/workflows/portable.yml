@@ -1,0 +1,46 @@
+name: Instalación portable
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  codigo:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m unittest discover -s tests
+      - run: python -m scripts.verify_package
+  instalacion-limpia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir e instalar sin modelos ni entorno previos
+        run: docker compose up --build --wait --wait-timeout 1500
+      - name: Comprobar componentes y pruebas
+        run: |
+          docker compose exec -T app python -m scripts.container_start --health
+          docker compose exec -T app python -m unittest discover -s tests
+          docker compose exec -T app python -m scripts.verify_package
+          curl --fail http://127.0.0.1:8000/api/status
+      - name: Guardar evidencia de arranque
+        if: always()
+        run: docker compose logs --no-color > portable.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: instalacion-limpia-linux
+          path: portable.log
+      - name: Limpiar entorno de prueba
+        if: always()
+        run: docker compose down --volumes

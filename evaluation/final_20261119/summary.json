@@ -1,0 +1,629 @@
+{
+  "snapshot": "2026-11-18",
+  "source_count": 15,
+  "audited_excerpts": 58,
+  "model": "qwen3:4b",
+  "warmup": {
+    "route": "ollama",
+    "ms": 11905.41
+  },
+  "embedding_model": "intfloat/multilingual-e5-small (ONNX INT8)",
+  "embedding_warmup_ms": {
+    "embeddings_only": 4232.03,
+    "adaptive": 3912.15
+  },
+  "variants": {
+    "local": {
+      "blocks": {
+        "excel": {
+          "total": 20,
+          "passed": 20,
+          "first_turn": {
+            "resolved": 10,
+            "answerable": 10
+          },
+          "limits": {
+            "correct": 10,
+            "total": 10
+          },
+          "critical_errors": 0
+        },
+        "es_coloquial": {
+          "total": 4,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 2,
+            "answerable": 4
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "en": {
+          "total": 8,
+          "passed": 6,
+          "first_turn": {
+            "resolved": 5,
+            "answerable": 7
+          },
+          "limits": {
+            "correct": 1,
+            "total": 1
+          },
+          "critical_errors": 0
+        },
+        "limites": {
+          "total": 7,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 1,
+            "answerable": 1
+          },
+          "limits": {
+            "correct": 6,
+            "total": 6
+          },
+          "critical_errors": 0
+        },
+        "seguimiento": {
+          "total": 2,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_en": {
+          "total": 6,
+          "passed": 3,
+          "first_turn": {
+            "resolved": 3,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_es": {
+          "total": 6,
+          "passed": 4,
+          "first_turn": {
+            "resolved": 4,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "limites_semanticos": {
+          "total": 8,
+          "passed": 8,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 8,
+            "total": 8
+          },
+          "critical_errors": 0
+        },
+        "cuentas": {
+          "total": 14,
+          "passed": 14,
+          "first_turn": {
+            "resolved": 8,
+            "answerable": 8
+          },
+          "limits": {
+            "correct": 5,
+            "total": 5
+          },
+          "critical_errors": 0
+        }
+      },
+      "all": {
+        "total": 75,
+        "passed": 66,
+        "first_turn": {
+          "resolved": 33,
+          "answerable": 42
+        },
+        "limits": {
+          "correct": 30,
+          "total": 30
+        },
+        "critical_errors": 0
+      },
+      "p50_ms": 0.19,
+      "p95_ms": 0.87,
+      "model_p95_ms": null,
+      "ollama_count": 0,
+      "semantic_count": 0,
+      "semantic_ollama_count": 0,
+      "direct_e5_answers": 0,
+      "classifier_attempts": 0,
+      "escalation_rate": 0.0,
+      "fallback_count": 0
+    },
+    "hybrid": {
+      "blocks": {
+        "excel": {
+          "total": 20,
+          "passed": 20,
+          "first_turn": {
+            "resolved": 10,
+            "answerable": 10
+          },
+          "limits": {
+            "correct": 10,
+            "total": 10
+          },
+          "critical_errors": 0
+        },
+        "es_coloquial": {
+          "total": 4,
+          "passed": 3,
+          "first_turn": {
+            "resolved": 3,
+            "answerable": 4
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "en": {
+          "total": 8,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 6,
+            "answerable": 7
+          },
+          "limits": {
+            "correct": 1,
+            "total": 1
+          },
+          "critical_errors": 1
+        },
+        "limites": {
+          "total": 7,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 1,
+            "answerable": 1
+          },
+          "limits": {
+            "correct": 6,
+            "total": 6
+          },
+          "critical_errors": 0
+        },
+        "seguimiento": {
+          "total": 2,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_en": {
+          "total": 6,
+          "passed": 5,
+          "first_turn": {
+            "resolved": 5,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 1
+        },
+        "parafrasis_es": {
+          "total": 6,
+          "passed": 6,
+          "first_turn": {
+            "resolved": 6,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "limites_semanticos": {
+          "total": 8,
+          "passed": 8,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 8,
+            "total": 8
+          },
+          "critical_errors": 0
+        },
+        "cuentas": {
+          "total": 14,
+          "passed": 14,
+          "first_turn": {
+            "resolved": 8,
+            "answerable": 8
+          },
+          "limits": {
+            "correct": 5,
+            "total": 5
+          },
+          "critical_errors": 0
+        }
+      },
+      "all": {
+        "total": 75,
+        "passed": 72,
+        "first_turn": {
+          "resolved": 39,
+          "answerable": 42
+        },
+        "limits": {
+          "correct": 30,
+          "total": 30
+        },
+        "critical_errors": 2
+      },
+      "p50_ms": 0.22,
+      "p95_ms": 3741.64,
+      "model_p95_ms": 9397.78,
+      "ollama_count": 10,
+      "semantic_count": 0,
+      "semantic_ollama_count": 0,
+      "direct_e5_answers": 0,
+      "classifier_attempts": 10,
+      "escalation_rate": 0.1333,
+      "fallback_count": 0
+    },
+    "embeddings_only": {
+      "blocks": {
+        "excel": {
+          "total": 20,
+          "passed": 20,
+          "first_turn": {
+            "resolved": 10,
+            "answerable": 10
+          },
+          "limits": {
+            "correct": 10,
+            "total": 10
+          },
+          "critical_errors": 0
+        },
+        "es_coloquial": {
+          "total": 4,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 2,
+            "answerable": 4
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "en": {
+          "total": 8,
+          "passed": 6,
+          "first_turn": {
+            "resolved": 5,
+            "answerable": 7
+          },
+          "limits": {
+            "correct": 1,
+            "total": 1
+          },
+          "critical_errors": 0
+        },
+        "limites": {
+          "total": 7,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 1,
+            "answerable": 1
+          },
+          "limits": {
+            "correct": 6,
+            "total": 6
+          },
+          "critical_errors": 0
+        },
+        "seguimiento": {
+          "total": 2,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_en": {
+          "total": 6,
+          "passed": 3,
+          "first_turn": {
+            "resolved": 3,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_es": {
+          "total": 6,
+          "passed": 4,
+          "first_turn": {
+            "resolved": 4,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "limites_semanticos": {
+          "total": 8,
+          "passed": 8,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 8,
+            "total": 8
+          },
+          "critical_errors": 0
+        },
+        "cuentas": {
+          "total": 14,
+          "passed": 14,
+          "first_turn": {
+            "resolved": 8,
+            "answerable": 8
+          },
+          "limits": {
+            "correct": 5,
+            "total": 5
+          },
+          "critical_errors": 0
+        }
+      },
+      "all": {
+        "total": 75,
+        "passed": 66,
+        "first_turn": {
+          "resolved": 33,
+          "answerable": 42
+        },
+        "limits": {
+          "correct": 30,
+          "total": 30
+        },
+        "critical_errors": 0
+      },
+      "p50_ms": 0.22,
+      "p95_ms": 1.02,
+      "model_p95_ms": null,
+      "ollama_count": 0,
+      "semantic_count": 0,
+      "semantic_ollama_count": 0,
+      "direct_e5_answers": 0,
+      "classifier_attempts": 0,
+      "escalation_rate": 0.0,
+      "fallback_count": 0
+    },
+    "adaptive": {
+      "blocks": {
+        "excel": {
+          "total": 20,
+          "passed": 20,
+          "first_turn": {
+            "resolved": 10,
+            "answerable": 10
+          },
+          "limits": {
+            "correct": 10,
+            "total": 10
+          },
+          "critical_errors": 0
+        },
+        "es_coloquial": {
+          "total": 4,
+          "passed": 3,
+          "first_turn": {
+            "resolved": 3,
+            "answerable": 4
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "en": {
+          "total": 8,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 6,
+            "answerable": 7
+          },
+          "limits": {
+            "correct": 1,
+            "total": 1
+          },
+          "critical_errors": 1
+        },
+        "limites": {
+          "total": 7,
+          "passed": 7,
+          "first_turn": {
+            "resolved": 1,
+            "answerable": 1
+          },
+          "limits": {
+            "correct": 6,
+            "total": 6
+          },
+          "critical_errors": 0
+        },
+        "seguimiento": {
+          "total": 2,
+          "passed": 2,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "parafrasis_en": {
+          "total": 6,
+          "passed": 5,
+          "first_turn": {
+            "resolved": 5,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 1
+        },
+        "parafrasis_es": {
+          "total": 6,
+          "passed": 6,
+          "first_turn": {
+            "resolved": 6,
+            "answerable": 6
+          },
+          "limits": {
+            "correct": 0,
+            "total": 0
+          },
+          "critical_errors": 0
+        },
+        "limites_semanticos": {
+          "total": 8,
+          "passed": 8,
+          "first_turn": {
+            "resolved": 0,
+            "answerable": 0
+          },
+          "limits": {
+            "correct": 8,
+            "total": 8
+          },
+          "critical_errors": 0
+        },
+        "cuentas": {
+          "total": 14,
+          "passed": 14,
+          "first_turn": {
+            "resolved": 8,
+            "answerable": 8
+          },
+          "limits": {
+            "correct": 5,
+            "total": 5
+          },
+          "critical_errors": 0
+        }
+      },
+      "all": {
+        "total": 75,
+        "passed": 72,
+        "first_turn": {
+          "resolved": 39,
+          "answerable": 42
+        },
+        "limits": {
+          "correct": 30,
+          "total": 30
+        },
+        "critical_errors": 2
+      },
+      "p50_ms": 0.24,
+      "p95_ms": 4653.8,
+      "model_p95_ms": 9212.66,
+      "ollama_count": 9,
+      "semantic_count": 0,
+      "semantic_ollama_count": 0,
+      "direct_e5_answers": 0,
+      "classifier_attempts": 10,
+      "escalation_rate": 0.1333,
+      "fallback_count": 1
+    }
+  },
+  "routing_revision": "e5_direct_then_optional_qwen",
+  "semantic_policy": {
+    "min_score": 0.82,
+    "min_margin": 0.015,
+    "thresholds_provisional": true
+  },
+  "paired": {
+    "gains": [
+      "ES2",
+      "EN2",
+      "SEM04",
+      "SEM05",
+      "SEM10",
+      "SEM11"
+    ],
+    "regressions": []
+  },
+  "paired_embeddings_only": {
+    "gains": [],
+    "regressions": []
+  },
+  "paired_embeddings": {
+    "gains": [],
+    "regressions": []
+  },
+  "paired_qwen_after_e5": {
+    "gains": [
+      "ES2",
+      "EN2",
+      "SEM04",
+      "SEM05",
+      "SEM10",
+      "SEM11"
+    ],
+    "regressions": []
+  }
+}

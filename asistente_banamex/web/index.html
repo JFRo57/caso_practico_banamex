@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente de consulta · Prototipo</title>
+  <link rel="stylesheet" href="/static/chat.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell masthead-content">
+      <div>
+        <h1 data-en="Information assistant">Asistente de consulta</h1>
+        <p data-en="Joy and Clásica cards, account fees and opening, contact channels, and basic security.">Tarjetas Joy y Clásica, comisiones y apertura de cuentas, canales de atención y seguridad básica.</p>
+      </div>
+      <div class="languages" role="group" aria-label="Idioma" data-label-en="Language">
+        <button type="button" lang="es" data-locale="es" aria-pressed="true">Español</button>
+        <button type="button" lang="en" data-locale="en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+  <main class="shell main">
+    <aside class="notice" aria-labelledby="notice-title">
+      <span class="notice-icon" aria-hidden="true">!</span>
+      <div>
+        <h2 id="notice-title" data-en="Unofficial Banamex channel">Canal no oficial de Banamex</h2>
+        <p><span data-en="This chat is an evaluation exercise.">Este chat es un ejercicio de evaluación.</span>
+          <strong data-en="Do not share personal or banking information.">No compartas datos personales ni bancarios.</strong></p>
+      </div>
+    </aside>
+    <div class="panel">
+      <div class="quick">
+        <p class="quick-label" id="examples-label" data-en="Example questions">Preguntas de ejemplo</p>
+        <div class="examples" role="group" aria-labelledby="examples-label">
+          <button type="button" data-en="Compare annual fees" data-question="¿Cuál tiene la anualidad más alta, Joy o Clásica?" data-question-en="Which card has the highest annual fee, Joy or Clásica?">Comparar anualidades</button>
+          <button type="button" data-en="Inactivity fee" data-question="¿Cuánto cuesta Joy si casi no la uso?" data-question-en="How much does Joy cost if I rarely use it?">Cargo por poco uso</button>
+          <button type="button" data-en="Open an account" data-question="¿Qué necesito para abrir una cuenta de débito?" data-question-en="How can I open an account?">Abrir una cuenta</button>
+          <button type="button" data-en="PIN safety" data-question="¿El banco me puede pedir mi NIP por teléfono?" data-question-en="Can the bank ask for my PIN over the phone?">Seguridad del NIP</button>
+        </div>
+      </div>
+      <section id="chat" role="log" aria-live="polite" aria-label="Conversación" data-label-en="Conversation" tabindex="0">
+        <div class="message assistant" data-en="Ask about card fees, how to open a debit account, or how to contact the bank.">Pregúntame por costos de tarjetas, cómo abrir una cuenta de débito o cómo contactar al banco.</div>
+      </section>
+      <form id="question-form">
+        <label class="visually-hidden" for="question" data-en="Question">Pregunta</label>
+        <textarea id="question" rows="2" maxlength="750" required placeholder="Escribe tu pregunta"></textarea>
+        <button class="send" id="send" type="submit" data-en="Send">Enviar</button>
+      </form>
+    </div>
+    <footer id="status">Consulta de fuentes locales</footer>
+  </main>
+  <script src="/static/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+1. Instala e inicia Docker Desktop (Windows/macOS/Linux) o Docker Engine con Compose v2 (Linux); descarga y abre la carpeta del proyecto.
+2. En una terminal dentro de esa carpeta ejecuta docker compose up --build; espera el mensaje VERIFICADO y Prototipo local (primera vez: internet y varios GB).
+3. Abre http://127.0.0.1:8000; para detenerlo pulsa Ctrl+C y ejecuta docker compose down (los modelos quedan guardados).

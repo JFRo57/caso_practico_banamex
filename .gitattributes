@@ -1,0 +1,2 @@
+# Preservar bytes de corpus y hashes incluso con core.autocrlf en Windows.
+* -text

@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asistente-banamex"
+version = "1.0.0"
+description = "Asistente virtual de consulta y comparación de productos financieros Banamex"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Rafael" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
+
+[project.optional-dependencies]
+embeddings = [
+    "numpy>=2.4,<2.6",
+    "onnxruntime==1.32.0",
+    "tokenizers==0.23.3",
+]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+asistente = "asistente_banamex.cli:main"
+banamex = "asistente_banamex.cli:main"
+
+[tool.setuptools]
+py-modules = ["app"]
+
+[tool.setuptools.packages.find]
+include = ["asistente_banamex", "scripts"]
+namespaces = false
+
+[tool.setuptools.package-data]
+asistente_banamex = ["data/facts.json", "data/raw/*", "web/index.html", "web/static/*", "evaluation/cases/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
