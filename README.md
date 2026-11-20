@@ -6,7 +6,7 @@
 ![Python 3.13](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)
 ![Ollama Qwen3:4b](https://img.shields.io/badge/Ollama-Qwen3%3A4b-black)
 
-## 🚀 Instrucciones de arranque
+## Instrucciones de arranque
 
 Descarga y descomprime el proyecto, o clona el repositorio. Elige tu plataforma:
 
@@ -21,7 +21,7 @@ Los **iniciadores nativos** preparan Python, Ollama y los modelos, verifican sus
 
 ---
 
-## 📌 Descripción general
+## Descripción general
 
 Este prototipo facilita la consulta del contenido público de Banamex mediante un chat en **español e inglés**. Está pensado para demostrar cómo atender preguntas frecuentes de clientes y prospectos sobre **Joy, Clásica, MiCuenta y Switch**, con un alcance acotado que los desarrolladores puedan revisar y evaluar.
 
@@ -33,7 +33,7 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 
 ---
 
-## 🛠️ Stack tecnológico
+## Stack tecnológico
 
 | Categoría | Tecnología |
 | :--- | :--- |
@@ -46,7 +46,7 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 
 ---
 
-## 📦 Requisitos previos e instalación
+## Requisitos previos e instalación
 
 ### Requisitos
 
@@ -69,7 +69,7 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 
 ---
 
-## 📊 Documentación y resultados
+## Documentación y resultados
 
 - [Matriz de resultados en Excel](Reporte_final_Banamex.xlsx).
 - [Nota de diseño](docs/NOTA_DISENO.pdf).
