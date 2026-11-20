@@ -2,9 +2,23 @@
 
 La vía principal ya no requiere Docker. Windows usa iniciar.cmd; macOS/Linux usan sh iniciar.sh. macOS también dispone de iniciar.command. Los iniciadores descargan uv 0.13.9 con SHA256 fijado y Python 3.13.18 privado, sin PATH ni registro global, y ejecutan preparar.py. La preparación nativa vive en scripts/native_start.py; Docker sigue disponible como alternativa.
 
+## Validación de instaladores en entornos nuevos
+
+Se reprodujo la ausencia de zonas horarias en entornos virtuales nuevos de Linux y Windows. La comprobación del repositorio detectó el problema y preparó tzdata automáticamente dentro del entorno, con una segunda verificación correcta. No se repararon paquetes globales.
+
+En una carpeta Windows nueva, sin entornos ni modelos del proyecto, se ejecutaron las entradas iniciar_rapido.cmd e iniciar.cmd con --prepare-only: ambos terminaron correctamente; la vía completa instaló sus dependencias, descargó E5 y verificó un plan Qwen3 válido. Se reutilizaron Visual C++ y el servicio/modelo Ollama existentes; no fue una máquina ni un sistema operativo limpio. Las 95 pruebas unitarias pasan en Windows y Linux. Las pruebas de errores con mocks siguen siendo simuladas.
+
+macOS, ARM y Docker completo siguen pendientes de ejecución real. Las referencias anteriores a Windows sin ejecutar corresponden al estado previo a esta comprobación.
+
+## Preparación reproducible de dependencias
+
+Los instaladores comprueban **Python, SQLite FTS5 y la zona America/Mexico_City** antes de descargar o iniciar modelos. `tzdata` se declara para todas las plataformas en las dependencias del repositorio; los archivos de requisitos comparten la definición mínima y la instalación como paquete también la incluye.
+
+El modo completo puede reparar la ausencia de zonas horarias solo dentro del entorno virtual del proyecto y vuelve a verificarla en un proceso nuevo. El modo rápido prepara su entorno mínimo cuando hace falta. Las comprobaciones de solo lectura no instalan nada; la reparación rechaza Python global. No se considera resuelto un fallo únicamente por haber instalado una dependencia manualmente en el equipo del usuario.
+
 ## Modo rápido
 
-Los iniciadores iniciar_rapido.cmd/sh/command activan --quick. Reutilizan Python3.11+ cuando está disponible o utilizan el bootstrap de Python privado. No preparan Ollama, Qwen3, E5, ONNX ni Visual C++. Si falta la base de zonas horarias del sistema, instalan solo tzdata2026.6 en .runtime/quick-venv; el modo completo también declara tzdata en Windows.
+Los iniciadores iniciar_rapido.cmd/sh/command activan --quick. Reutilizan Python3.11+ cuando está disponible o utilizan el bootstrap de Python privado. No preparan Ollama, Qwen3, E5, ONNX ni Visual C++. Si falta la base de zonas horarias del sistema, instalan solo tzdata2026.6 en .runtime/quick-venv; el modo completo declara tzdata para todos los sistemas.
 
 El servidor arranca sin --embeddings ni --ollama-model: Engine.model y Engine.semantic quedan en None. No puede hacer fallback al LLM, incluso con Ollama disponible. Las consultas no resueltas se aclaran o se rechazan según las políticas existentes. APIstatus declara routing_mode=local, model=null y embeddings=false; el chat muestra explícitamente ausencia de respaldo LLM. No se alteran los parámetros ni las rutas del modo completo.
 

@@ -8,6 +8,7 @@ from urllib.request import ProxyHandler, Request, build_opener
 from scripts.prepare_embeddings import prepare_model
 from asistente_banamex import Engine
 from asistente_banamex.ollama import OllamaPlanner
+from scripts.runtime_check import check as check_runtime
 
 MODEL = "qwen3:4b"
 HTTP = build_opener(ProxyHandler({}))
@@ -37,6 +38,7 @@ def health():
 
 
 def prepare():
+    check_runtime()
     print("Preparando E5 y Qwen3 CPU. La primera ejecución descarga varios GB.", flush=True)
     for attempt in range(60):
         try:

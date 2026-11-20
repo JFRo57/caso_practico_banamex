@@ -155,4 +155,4 @@ flowchart TD
 - [Configuración técnica y estado de validación](docs/CONFIGURACION.md).
 - [Bitácora del proyecto](docs/BITACORA.md).
 
-**Validación:** el arranque nativo se probó en Linux. La ejecución real en Windows/macOS y la instalación completa con Docker siguen pendientes. Este prototipo no acredita preparación para producción.
+**Validación:** se probaron Linux y los instaladores de Windows en entornos nuevos del proyecto, incluida la preparación automática de zonas horarias. No equivale a una máquina limpia: la prueba completa de Windows reutilizó Visual C++ y el servicio Ollama existentes. macOS y Docker completo siguen pendientes. Consulta la [evidencia y sus límites](docs/CONFIGURACION.md).

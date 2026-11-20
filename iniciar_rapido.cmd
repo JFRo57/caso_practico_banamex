@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 cd /d "%~dp0"
-py -3 -c "import sys, ensurepip; sys.exit(sys.version_info < (3, 11))" >nul 2>&1
+py -3 -c "import sys, ensurepip, sqlite3; c=sqlite3.connect(':memory:'); c.execute('CREATE VIRTUAL TABLE probe USING fts5(text)'); c.close(); sys.exit(sys.version_info < (3, 11))" >nul 2>&1
 if errorlevel 1 goto bootstrap
 py -3 preparar.py --start --quick %*
 set "BANAMEX_QUICK_RESULT=%ERRORLEVEL%"

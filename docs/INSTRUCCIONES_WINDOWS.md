@@ -8,7 +8,7 @@ Para una prueba sin modelos ni respaldo LLM, usa la [opción rápida](INSTRUCCIO
 2. Abre `iniciar.cmd`. Si falta Microsoft Visual C++, autoriza su instalador oficial cuando Windows lo solicite; puede requerir reinicio.
 3. Espera a que termine la preparación y se abra el navegador. Si no abre, usa la dirección que imprime la terminal.
 
-No necesitas instalar Python, Ollama ni Docker previamente. El primer arranque descarga las dependencias y los modelos; los siguientes reutilizan los archivos.
+No necesitas instalar Python, Ollama ni Docker previamente. El instalador prepara también las zonas horarias; no tienes que instalar `tzdata` manualmente. El primer arranque descarga las dependencias y los modelos; los siguientes reutilizan los archivos.
 
 Mantén la terminal abierta. Para detener el chat, pulsa **Ctrl+C**.
 

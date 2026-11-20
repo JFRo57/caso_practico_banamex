@@ -24,8 +24,10 @@ class SetupTests(unittest.TestCase):
                 finally:
                     install.assert_not_called()
                     popen.assert_not_called()
-                    self.assertEqual(run.call_count, 1)
-                    self.assertNotIn('pip', run.call_args.args)
+                    self.assertEqual(run.call_count, 2)
+                    for call in run.call_args_list:
+                        self.assertNotIn('pip', call.args)
+                        self.assertNotIn('--repair', call.args)
                     api.assert_called_once_with('tags')
 
     def test_check_no_install_or_inference(self):

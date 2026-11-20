@@ -26,3 +26,8 @@ Solicitud del usuario: evitar Docker obligatorio. Añadidos iniciar.cmd, iniciar
 ## Modo rápido — 20 de noviembre de 2026
 
 Solicitud del usuario: opción sencilla sin Ollama/Qwen3 y ausencia de fallback LLM explícita en diagramas y uso. Añadidos iniciadores rápidos que reutilizan Python o su bootstrap; no activan E5, ONNX ni servicios de modelos. Si faltan zonas horarias, se prepara solo tzdata en entorno privado. La misma dependencia se declara en Windows para el modo completo. Se actualizan README, diagramas, guías y estado bilingüe del chat; motor de respuestas y parámetros del modo completo preservados. Prueba HTTP real Linux y91tests; Windows/macOS siguen pendientes de ejecución real. No se repitió benchmark de calidad ni se atribuyen métricas del modo completo al rápido.
+
+
+## Comprobaciones previas del instalador — 20 de noviembre de 2026
+
+A petición del usuario, la corrección de dependencias queda en el repositorio y no se considera cerrada con una reparación manual del equipo. tzdata se declara en las vías base, embeddings, nativa, Docker y paquete Python. Se añade comprobación previa de Python/SQLite FTS5/zonas horarias, con reparación limitada al entorno virtual y nueva verificación. Los iniciadores rápidos descartan intérpretes sin FTS5. Se distinguen pruebas en entornos nuevos de una máquina limpia.

@@ -18,6 +18,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
+      - name: Reproducir y reparar falta de zonas horarias en entorno nuevo
+        shell: python
+        run: |
+          import os, pathlib, subprocess, sys, tempfile
+          with tempfile.TemporaryDirectory() as temporary:
+              venv = pathlib.Path(temporary) / 'venv'
+              subprocess.run([sys.executable, '-m', 'venv', str(venv)], check=True)
+              python = venv / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
+              env = dict(os.environ, PYTHONTZPATH='')
+              missing = subprocess.run([str(python), '-m', 'scripts.runtime_check'], env=env)
+              assert missing.returncode != 0, 'La prueba debe comenzar sin tzdata'
+              subprocess.run([str(python), '-m', 'scripts.runtime_check', '--repair'], env=env, check=True)
+              subprocess.run([str(python), '-m', 'scripts.runtime_check'], env=env, check=True)
       - run: python -m pip install -r requirements-quick.txt
       - name: Comprobar iniciador rápido Windows
         if: runner.os == 'Windows'

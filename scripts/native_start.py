@@ -193,6 +193,7 @@ def ensure_server(python):
 
 
 def check_resources(python):
+    run(python, "-m", "scripts.runtime_check")
     run(python, "-c", "from scripts.prepare_embeddings import MODEL_DIRECTORY,MODEL_FILES; "
         "import hashlib; "
         "assert all((MODEL_DIRECTORY/n).is_file() and hashlib.sha256((MODEL_DIRECTORY/n).read_bytes()).hexdigest()==h for n,h in MODEL_FILES.items()), 'E5 incompleto'; "
@@ -276,6 +277,7 @@ def main():
         parser.error("Puerto inválido")
     if args.quick:
         python = quick_python(args.check)
+        run(python, "-m", "scripts.runtime_check")
         run(python, "-c", "from zoneinfo import ZoneInfo; ZoneInfo('America/Mexico_City'); "
             "from asistente_banamex import Engine; e=Engine(); "
             "assert e.model is None and e.semantic is None; "
@@ -296,6 +298,7 @@ def main():
     if not python.exists():
         run(sys.executable, "-m", "venv", python.parent.parent)
     run(python, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-native.txt")
+    run(python, "-m", "scripts.runtime_check", "--repair")
     server = ensure_server(python)
     try:
         env = dict(os.environ, BANAMEX_OLLAMA_URL=local_endpoint())

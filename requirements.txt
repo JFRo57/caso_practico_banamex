@@ -1,4 +1,5 @@
-# El modo base del asistente Banamex utiliza únicamente la biblioteca estándar de Python (>=3.11).
+# El modo base utiliza Python >=3.11, SQLite FTS5 y datos de zonas horarias.
+-r requirements-quick.txt
 # Para instalar las extensiones opcionales de búsqueda semántica (ONNX Runtime):
 #   pip install -r requirements-embeddings.txt
 # O instalando vía pyproject.toml:

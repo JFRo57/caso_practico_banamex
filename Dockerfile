@@ -3,7 +3,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 ca-certificates \
     && rm -rf /var/lib/apt/lists/*
-COPY requirements-portable.lock ./
+COPY requirements-portable.lock requirements-quick.txt ./
 RUN python -m pip install --no-cache-dir --only-binary=:all: -r requirements-portable.lock
 COPY . ./
 CMD ["python", "-m", "scripts.container_start"]
