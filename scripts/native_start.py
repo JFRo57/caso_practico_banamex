@@ -16,6 +16,7 @@ from urllib.parse import urlparse
 from urllib.request import ProxyHandler, Request, build_opener, urlopen
 import webbrowser
 import zipfile
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent.parent
 MODEL = "qwen3:4b"
@@ -202,15 +203,37 @@ def check_resources(python):
         raise RuntimeError("Falta qwen3:4b. Ejecuta el iniciador sin --check.")
 
 
-def start_chat(python, port, browser):
+def quick_python(check=False):
+    if sys.version_info < (3, 11):
+        raise RuntimeError("El modo rápido necesita Python 3.11 o posterior.")
+    try:
+        ZoneInfo("America/Mexico_City")
+        return Path(sys.executable)
+    except ZoneInfoNotFoundError:
+        python = ROOT / ".runtime" / "quick-venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
+        if check:
+            if not python.exists():
+                raise RuntimeError("Faltan las zonas horarias. Ejecuta el iniciador rápido sin --check.")
+            return python
+        if not python.exists():
+            run(sys.executable, "-m", "venv", python.parent.parent)
+        run(python, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-quick.txt")
+        return python
+
+
+def start_chat(python, port, browser, quick=False):
     with socket.socket() as probe:
         try:
             probe.bind(("127.0.0.1", port))
         except OSError as error:
             raise RuntimeError(f"El puerto {port} está ocupado. Cierra la otra instancia o usa --port.") from error
     url = f"http://127.0.0.1:{port}"
-    env = dict(os.environ, BANAMEX_BIND_HOST="127.0.0.1", BANAMEX_OLLAMA_URL=local_endpoint())
-    process = subprocess.Popen([str(python), "app.py", "--port", str(port), "--embeddings", "--ollama-model", MODEL], cwd=ROOT, env=env)
+    env = dict(os.environ, BANAMEX_BIND_HOST="127.0.0.1")
+    command = [str(python), "app.py", "--port", str(port)]
+    if not quick:
+        env["BANAMEX_OLLAMA_URL"] = local_endpoint()
+        command.extend(["--embeddings", "--ollama-model", MODEL])
+    process = subprocess.Popen(command, cwd=ROOT, env=env)
     try:
         for _ in range(180):
             if process.poll() is not None:
@@ -218,7 +241,10 @@ def start_chat(python, port, browser):
             try:
                 with HTTP.open(url + "/api/status", timeout=2) as response:
                     state = json.load(response)
-                if not state.get("embeddings") or state.get("routing_mode") != "adaptive":
+                if quick:
+                    if state.get("model") or state.get("embeddings") or state.get("routing_mode") != "local":
+                        raise RuntimeError("El modo rápido no debe activar modelos ni respaldo LLM.")
+                elif not state.get("embeddings") or state.get("routing_mode") != "adaptive":
                     raise RuntimeError("El chat no activó E5 y Qwen3.")
                 break
             except OSError:
@@ -237,6 +263,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="No instala, descarga, inicia servidores ni infiere con Qwen3")
     parser.add_argument("--start", action="store_true", help="Prepara, verifica y abre el chat")
+    parser.add_argument("--quick", action="store_true", help="Solo reglas y FTS5; sin E5, Ollama, Qwen3 ni respaldo LLM")
     parser.add_argument("--prepare-only", action="store_true", help="Prepara y verifica sin abrir el chat")
     parser.add_argument("--no-browser", action="store_true")
     parser.add_argument("--port", type=int, default=8000)
@@ -247,6 +274,14 @@ def main():
         parser.error("--check y --start son excluyentes")
     if not 1 <= args.port <= 65535:
         parser.error("Puerto inválido")
+    if args.quick:
+        python = quick_python(args.check)
+        run(python, "-c", "from zoneinfo import ZoneInfo; ZoneInfo('America/Mexico_City'); "
+            "from asistente_banamex import Engine; e=Engine(); "
+            "assert e.model is None and e.semantic is None; "
+            "assert e.answer('¿Cuál es la anualidad de Joy?')['action']=='answer'")
+        print("Modo rápido: reglas y búsqueda local. Sin E5, Ollama ni Qwen3. No hay respaldo hacia un LLM.", flush=True)
+        return start_chat(python, args.port, not args.no_browser, quick=True) if args.start else 0
     validate_platform()
     local_endpoint()
     python = native_python()

@@ -4,7 +4,7 @@
 
 ![Estado: prototipo](https://img.shields.io/badge/estado-prototipo-orange)
 ![Python 3.13](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)
-![Ollama Qwen3:4b](https://img.shields.io/badge/Ollama-Qwen3%3A4b-black)
+![LLM opcional Qwen3:4b](https://img.shields.io/badge/LLM_opcional-Qwen3%3A4b-black)
 
 ## Instrucciones de arranque
 
@@ -12,12 +12,20 @@ Descarga y descomprime el proyecto, o clona el repositorio. Elige tu plataforma:
 
 | Opción | Guía de inicio |
 | :--- | :--- |
-| **Windows** | [Iniciar en Windows](docs/INSTRUCCIONES_WINDOWS.md) |
-| **macOS** | [Iniciar en macOS](docs/INSTRUCCIONES_MACOS.md) |
-| **Linux / WSL** | [Iniciar en Linux](docs/INSTRUCCIONES_LINUX.md) |
+| **Ejecución rápida — sin modelos** | [Iniciar sin Ollama ni Qwen3](docs/INSTRUCCIONES_RAPIDO.md) |
+| **Windows — completo** | [Iniciar en Windows](docs/INSTRUCCIONES_WINDOWS.md) |
+| **macOS — completo** | [Iniciar en macOS](docs/INSTRUCCIONES_MACOS.md) |
+| **Linux / WSL — completo** | [Iniciar en Linux](docs/INSTRUCCIONES_LINUX.md) |
 | **Docker — opcional** | [Iniciar con Docker](docs/INSTRUCCIONES_DOCKER.md) |
 
-Los **iniciadores nativos** preparan Python, Ollama y los modelos, verifican sus componentes y abren el chat. La primera ejecución necesita internet y puede tardar varios minutos.
+El **modo rápido** reutiliza Python si está disponible y evita las descargas de modelos. Los **iniciadores completos** preparan Python, E5 y Ollama/Qwen3; su primera ejecución necesita internet y puede tardar varios minutos.
+
+| Modo | Componentes | Si no resuelve una consulta |
+| :--- | :--- | :--- |
+| **Rápido** | Reglas, SQLite FTS5 y fichas | Aclaración o abstención; **sin fallback hacia LLM** |
+| **Completo** | Lo anterior, E5 y Qwen3 mediante Ollama | Puede consultar Qwen3; conserva aclaraciones y abstenciones si no logra resolver |
+
+El modo rápido **no utiliza E5 ni consulta Ollama**, aunque ya estén instalados. Puede reconocer menos formulaciones; no se deben atribuirle las métricas del modo completo.
 
 ---
 
@@ -40,7 +48,7 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 | **Backend / Core** | Python 3.13 en los iniciadores; servidor HTTP de la biblioteca estándar |
 | **Interfaz** | HTML, CSS y JavaScript |
 | **Búsqueda textual** | SQLite FTS5 en memoria |
-| **Modelos locales** | Ollama con Qwen3:4b; multilingual-e5-small con ONNX Runtime en CPU |
+| **Modelos locales — modo completo** | Ollama con Qwen3:4b; multilingual-e5-small con ONNX Runtime en CPU |
 | **Herramientas / Librerías** | uv, NumPy y Tokenizers |
 | **Infraestructura** | Ejecución local; Docker Compose opcional con Python 3.14 |
 
@@ -48,12 +56,12 @@ Este prototipo facilita la consulta del contenido público de Banamex mediante u
 
 ## Arquitectura por capas
 
-La interfaz y el motor se ejecutan localmente. Las flechas representan dependencias entre componentes; **E5 y Qwen3 interpretan consultas**, mientras las respuestas visibles se construyen con fichas y plantillas.
+La interfaz y el motor se ejecutan localmente. Las flechas representan dependencias entre componentes; **E5 y Qwen3 interpretan consultas solo en el modo completo**; el modo rápido usa reglas y FTS5. Ambos construyen respuestas visibles con fichas y plantillas.
 
 ```mermaid
 flowchart TB
     subgraph L1[Presentación]
-        UI["Chat: HTML, CSS y JavaScript"]
+        UI["Chat rápido o completo: HTML, CSS y JavaScript"]
     end
     subgraph L2[Servicio]
         API["API HTTP local: app.py"]
@@ -77,15 +85,15 @@ flowchart TB
     ENGINE --> ANSWERS
     ENGINE --> RULES
     ENGINE --> SEARCH
-    ENGINE -. "Opcional" .-> E5
-    ENGINE -. "Opcional" .-> LLM
+    ENGINE -. "Solo modo completo" .-> E5
+    ENGINE -. "Solo modo completo" .-> LLM
     FACTS --> SEARCH
     FACTS --> ANSWERS
 ```
 
 ### Flujo de una consulta
 
-El motor prioriza reglas y recuperación local. E5 se utiliza solo para consultas de apertura admitidas; Qwen3 recibe las consultas que siguen sin resolverse, si está activo. Un fallo del clasificador activa el respaldo local.
+El motor prioriza reglas y recuperación local. **En modo rápido, una consulta sin resolver va directamente a aclaración o abstención: no hay respaldo hacia LLM.** En modo completo, E5 puede clasificar consultas de apertura y Qwen3 puede interpretar las consultas restantes. Si Qwen3 falla, se conserva una respuesta local de aclaración o abstención.
 
 ```mermaid
 flowchart TD
@@ -94,7 +102,9 @@ flowchart TD
     S -- Sí --> LOCAL["Reglas, contexto y búsqueda FTS5"]
     LOCAL --> PLAN{"¿Plan resuelto?"}
     PLAN -- Sí --> BUILD["Validar fichas y construir respuesta con plantillas"]
-    PLAN -- No --> ELIGIBLE{"¿E5 activo y apertura admitida?"}
+    PLAN -- No --> MODE{"¿Modo rápido?"}
+    MODE -- Sí --> NO_LLM["Aclaración o abstención: sin respaldo LLM"]
+    MODE -- No --> ELIGIBLE{"¿E5 activo y apertura admitida?"}
     ELIGIBLE -- Sí --> E5["Clasificar perfil de apertura"]
     E5 --> CONF{"¿Cumple umbrales y canal?"}
     CONF -- Sí --> BUILD
@@ -108,6 +118,7 @@ flowchart TD
     BUILD --> RESULT["Respuesta citada, aclaración o abstención según evidencia"]
     RESULT --> CHAT["Mostrar resultado en el chat"]
     SAFE --> CHAT
+    NO_LLM --> CHAT
     LIMIT --> CHAT
 ```
 
@@ -118,9 +129,9 @@ flowchart TD
 ### Requisitos
 
 - **Sistema compatible de 64 bits:** Windows 10 22H2+, macOS 14+ o Linux/WSL con glibc 2.28+. Consulta los requisitos específicos en la guía de tu plataforma.
-- **Internet** para la preparación inicial y descarga de modelos.
-- **Recursos recomendados:** 8 GB de RAM y 15 GB libres; son márgenes de referencia, no mínimos medidos.
-- **Git**, solo si prefieres clonar. Los iniciadores no requieren Python ni Ollama previamente instalados; Windows puede solicitar autorización para instalar Microsoft Visual C++.
+- **Internet** si es necesario preparar Python o dependencias; el modo completo también descarga modelos.
+- **Modo completo:** como referencia, 8 GB de RAM y 15 GB libres, no mínimos medidos. El modo rápido evita el espacio y el cómputo de los modelos.
+- **Git**, solo si prefieres clonar. Los iniciadores pueden preparar Python. Solo el modo completo instala Ollama y puede solicitar Microsoft Visual C++ en Windows.
 - **Docker**, únicamente si eliges esa alternativa.
 
 ### Pasos de instalación

@@ -1,3 +1,3 @@
-1. Descarga y descomprime toda la carpeta del proyecto en un Windows 10 22H2+, macOS 14+ o Linux compatible de 64 bits; requiere internet y espacio para los modelos.
-2. Windows: abre iniciar.cmd y autoriza el instalador Microsoft si se solicita; macOS/Linux: abre una terminal en esa carpeta y ejecuta sh iniciar.sh. No necesitas Python, Ollama ni Docker previamente instalados.
-3. Espera la preparación y el navegador automático; si no abre, usa la URL impresa. Mantén la terminal abierta; Ctrl+C detiene la demo.
+1. Descarga y descomprime toda la carpeta. El modo rápido evita los modelos; puede necesitar internet para preparar Python o las zonas horarias. El completo requiere internet y espacio para los modelos.
+2. Rápido: iniciar_rapido.cmd en Windows o sh iniciar_rapido.sh en macOS/Linux, sin fallback LLM. Completo: iniciar.cmd o sh iniciar.sh; Windows puede pedir autorización para Microsoft Visual C++.
+3. Espera el navegador o abre la URL impresa. Mantén la terminal abierta; Ctrl+C detiene el chat. Si el modo rápido no resuelve una consulta, pedirá aclaración o se abstendrá.

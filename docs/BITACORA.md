@@ -21,3 +21,8 @@ Por solicitud del usuario se añadió una vía Docker Compose para Windows/macOS
 ## Iniciadores nativos — 20 de noviembre de 2026
 
 Solicitud del usuario: evitar Docker obligatorio. Añadidos iniciar.cmd, iniciar.sh e iniciar.command; uv verificado prepara Python3.13 privado. El preparador detecta plataforma, instala dependencias y Ollama privado cuando hace falta y verifica E5/Qwen3 antes de abrir navegador. No se cambian prompts, fichas ni modelo. MacIntel usa ONNX1.23.2 por disponibilidad de binarios; se distingue esa variante de la evaluación histórica. Implementación y comprobaciones asistidas por Codex. Evidencia y límites en CONFIGURACION.md.
+
+
+## Modo rápido — 20 de noviembre de 2026
+
+Solicitud del usuario: opción sencilla sin Ollama/Qwen3 y ausencia de fallback LLM explícita en diagramas y uso. Añadidos iniciadores rápidos que reutilizan Python o su bootstrap; no activan E5, ONNX ni servicios de modelos. Si faltan zonas horarias, se prepara solo tzdata en entorno privado. La misma dependencia se declara en Windows para el modo completo. Se actualizan README, diagramas, guías y estado bilingüe del chat; motor de respuestas y parámetros del modo completo preservados. Prueba HTTP real Linux y91tests; Windows/macOS siguen pendientes de ejecución real. No se repitió benchmark de calidad ni se atribuyen métricas del modo completo al rápido.

@@ -2,6 +2,8 @@
 
 macOS 14 o posterior, Intel o Apple Silicon. Necesitas internet para la primera preparación.
 
+Para una prueba sin modelos ni respaldo LLM, usa la [opción rápida](INSTRUCCIONES_RAPIDO.md). Esta guía corresponde al **modo completo**.
+
 1. Descarga y descomprime toda la carpeta del proyecto.
 2. Abre Terminal en esa carpeta y ejecuta `sh iniciar.sh`. También se incluye `iniciar.command` para abrirlo desde Finder si el sistema lo permite.
 3. Espera a que termine la preparación y se abra el navegador. Si no abre, usa la dirección que imprime la terminal.

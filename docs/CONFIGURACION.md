@@ -2,6 +2,12 @@
 
 La vía principal ya no requiere Docker. Windows usa iniciar.cmd; macOS/Linux usan sh iniciar.sh. macOS también dispone de iniciar.command. Los iniciadores descargan uv 0.13.9 con SHA256 fijado y Python 3.13.18 privado, sin PATH ni registro global, y ejecutan preparar.py. La preparación nativa vive en scripts/native_start.py; Docker sigue disponible como alternativa.
 
+## Modo rápido
+
+Los iniciadores iniciar_rapido.cmd/sh/command activan --quick. Reutilizan Python3.11+ cuando está disponible o utilizan el bootstrap de Python privado. No preparan Ollama, Qwen3, E5, ONNX ni Visual C++. Si falta la base de zonas horarias del sistema, instalan solo tzdata2026.6 en .runtime/quick-venv; el modo completo también declara tzdata en Windows.
+
+El servidor arranca sin --embeddings ni --ollama-model: Engine.model y Engine.semantic quedan en None. No puede hacer fallback al LLM, incluso con Ollama disponible. Las consultas no resueltas se aclaran o se rechazan según las políticas existentes. APIstatus declara routing_mode=local, model=null y embeddings=false; el chat muestra explícitamente ausencia de respaldo LLM. No se alteran los parámetros ni las rutas del modo completo.
+
 ## Preparación y comprobaciones
 
 Windows requiere el runtime de Microsoft Visual C++ para ONNX. Si no están disponibles sus DLL, el iniciador descarga el redistribuible oficial, exige firma Authenticode válida de Microsoft y abre su instalador con autorización UAC del usuario. Es una instalación del sistema, a diferencia de Python/Ollama privados; puede necesitar reinicio. Esta rama se probó con simulaciones, no en Windows real. Fuentes: https://onnxruntime.ai/docs/install/ y https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist.

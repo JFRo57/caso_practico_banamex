@@ -12,7 +12,7 @@ const ui = {
   es: {
     title: 'Asistente de consulta · Prototipo', placeholder: 'Escribe tu pregunta',
     localSources: 'Consulta de fuentes locales', downloaded: 'Corpus actualizado el',
-    hybrid: 'Interpretación opcional con Qwen3', local: 'Modo local', semantic: 'Búsqueda local con E5',
+    hybrid: 'Interpretación opcional con Qwen3', local: 'Modo rápido: sin respaldo hacia un LLM', semantic: 'Búsqueda local con E5',
     adaptive: 'E5 con apoyo de Qwen3 cuando hace falta',
     submitted: 'Consulta enviada', loading: 'Consultando…',
     responseTime: 'Respuesta en', routes: { local: 'Ruta local', ollama: 'Qwen3', semantic: 'E5 sin Qwen3', semantic_ollama: 'E5 con apoyo de Qwen3', fallback: 'Respaldo local' },
@@ -21,7 +21,7 @@ const ui = {
   en: {
     title: 'Information assistant · Prototype', placeholder: 'Type your question',
     localSources: 'Using local sources', downloaded: 'Corpus updated on',
-    hybrid: 'Optional interpretation with Qwen3', local: 'Local mode', semantic: 'Local E5 search',
+    hybrid: 'Optional interpretation with Qwen3', local: 'Quick mode: no LLM fallback', semantic: 'Local E5 search',
     adaptive: 'E5 with Qwen3 assistance when needed',
     submitted: 'Question sent', loading: 'Looking up your question…',
     responseTime: 'Reply in', routes: { local: 'Local route', ollama: 'Qwen3', semantic: 'E5 without Qwen3', semantic_ollama: 'E5 with Qwen3 assistance', fallback: 'Local fallback' },

@@ -2,6 +2,8 @@
 
 Windows 10 22H2 o posterior, de 64 bits. Necesitas internet para la primera preparación.
 
+Para una prueba sin modelos ni respaldo LLM, usa la [opción rápida](INSTRUCCIONES_RAPIDO.md). Esta guía corresponde al **modo completo**.
+
 1. Descarga y descomprime toda la carpeta del proyecto.
 2. Abre `iniciar.cmd`. Si falta Microsoft Visual C++, autoriza su instalador oficial cuando Windows lo solicite; puede requerir reinicio.
 3. Espera a que termine la preparación y se abra el navegador. Si no abre, usa la dirección que imprime la terminal.

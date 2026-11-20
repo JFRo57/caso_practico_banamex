@@ -1,5 +1,7 @@
 # Iniciar con Docker — opcional
 
+Esta opción ejecuta el **modo completo con modelos**. Para una prueba sin modelos ni respaldo LLM, usa el [modo rápido](INSTRUCCIONES_RAPIDO.md).
+
 Usa esta opción si prefieres Docker. Necesitas Docker Desktop iniciado, o Docker Engine con Compose v2 en Linux, e internet para la primera preparación. Docker debe usar contenedores Linux.
 
 1. Descarga y descomprime toda la carpeta del proyecto.

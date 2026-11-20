@@ -1,0 +1,2 @@
+# Solo se instala si Python no encuentra las zonas horarias del sistema.
+tzdata==2026.6
