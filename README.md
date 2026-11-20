@@ -5,10 +5,12 @@ Ejercicio de evaluación: no es un canal oficial y no debe publicarse. Atiende J
 ## Arranque nativo con iniciadores — sin Docker
 
 1. Descarga y descomprime **toda** la carpeta del proyecto.
-2. Windows: abre `iniciar.cmd`. macOS/Linux: abre una terminal en la carpeta y ejecuta `sh iniciar.sh` (macOS también incluye `iniciar.command`).
+2. Windows: abre `iniciar.cmd` y autoriza el instalador Microsoft si se solicita. macOS/Linux: abre una terminal en la carpeta y ejecuta `sh iniciar.sh` (macOS también incluye `iniciar.command`).
 3. Espera la preparación y el navegador automático; si no se abre, usa la URL impresa. Mantén la terminal abierta; Ctrl+C detiene la demo.
 
 Estas son también las tres líneas de [INSTRUCCIONES.txt](INSTRUCCIONES.txt). La primera ejecución necesita internet y puede tardar varios minutos. No exige instalar Python, Ollama o Docker previamente: descarga uv 0.13.9 verificado por SHA256, prepara Python 3.13.18 y el entorno `.runtime/venv`, y descarga Ollama 0.40.16 privado si no encuentra un servicio local disponible. Los archivos pertenecen a esta carpeta: no requiere sudo, no altera PATH ni registra Python en Windows, no habilita servicios ni cambia las políticas de ejecución de Windows.
+
+Windows puede necesitar [Microsoft Visual C++ Runtime](https://onnxruntime.ai/docs/install/). Si falta, se descarga desde [Microsoft](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist), se verifica su firma Authenticode y se abre el instalador con autorización del usuario mediante Windows. Ese componente sí se instala en el sistema y puede requerir reinicio; no se cambia ninguna política de ejecución ni se oculta una elevación.
 
 ### Sistemas y recursos
 

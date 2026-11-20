@@ -1,5 +1,6 @@
 """Preparación nativa sin cambios globales ni dependencia de Docker."""
 import argparse
+import ctypes
 import hashlib
 import json
 import os
@@ -68,7 +69,7 @@ def validate_platform():
             raise RuntimeError("Mac Intel necesita Python 3.13 para ONNX. Usa sh iniciar.sh.")
 
 
-def download(url, destination, expected):
+def download(url, destination, expected=None):
     for attempt in range(3):
         try:
             digest = hashlib.sha256()
@@ -76,13 +77,47 @@ def download(url, destination, expected):
                 while chunk := source.read(1024 * 1024):
                     digest.update(chunk)
                     target.write(chunk)
-            if digest.hexdigest() != expected:
+            if expected and digest.hexdigest() != expected:
                 raise RuntimeError("SHA256 incorrecto: " + destination.name)
             return
         except OSError:
             if attempt == 2:
                 raise
             time.sleep(2)
+
+
+def ensure_windows_runtime():
+    if sys.platform != "win32":
+        return
+    def available():
+        try:
+            ctypes.WinDLL("msvcp140.dll")
+            ctypes.WinDLL("vcruntime140_1.dll")
+            return True
+        except OSError:
+            return False
+    if available():
+        return
+    print("Falta Microsoft Visual C++. Se abrirá su instalador oficial; Windows solicitará tu autorización.", flush=True)
+    arch = "arm64" if machine() == "arm64" else "x64"
+    installer = ROOT / ".runtime" / f"vc_redist.{arch}.exe"
+    installer.parent.mkdir(parents=True, exist_ok=True)
+    download(f"https://aka.ms/vc14/vc_redist.{arch}.exe", installer)
+    # Microsoft actualiza este instalador: se exige firma Authenticode válida,
+    # sin ejecutar un binario descargado sin verificar ni cambiar políticas.
+    command = (
+        "$ErrorActionPreference='Stop'; "
+        "$s=Get-AuthenticodeSignature -LiteralPath $env:BANAMEX_VC_INSTALLER; "
+        "if ($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation(?:,|$)') "
+        "{ throw 'Firma Microsoft inválida; instalación detenida' }; "
+        "$p=Start-Process -FilePath $env:BANAMEX_VC_INSTALLER -ArgumentList '/install','/norestart' "
+        "-Verb RunAs -Wait -PassThru; "
+        "if ($p.ExitCode -notin @(0,3010,1638)) { exit $p.ExitCode }"
+    )
+    subprocess.run(["powershell.exe", "-NoProfile", "-Command", command],
+                   env=dict(os.environ, BANAMEX_VC_INSTALLER=str(installer)), check=True)
+    if not available():
+        raise RuntimeError("Visual C++ aún no está disponible; completa su instalación o reinicia Windows y vuelve a abrir el iniciador.")
 
 
 def install_ollama(python):
@@ -221,7 +256,8 @@ def main():
         check_resources(python)
         print("OK: E5 ejecutado y Qwen3 instalado; --check no realizó inferencia Qwen3.")
         return 0
-    print("Primera preparación: internet, varios GB y varios minutos; sin Docker ni sudo.", flush=True)
+    print("Primera preparación: internet, varios GB y varios minutos; no requiere Docker.", flush=True)
+    ensure_windows_runtime()
     if not python.exists():
         run(sys.executable, "-m", "venv", python.parent.parent)
     run(python, "-m", "pip", "install", "--only-binary=:all:", "-r", "requirements-native.txt")

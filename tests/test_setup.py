@@ -99,6 +99,22 @@ class SetupTests(unittest.TestCase):
             browser.assert_not_called()
             process.terminate.assert_called_once()
 
+    def test_windows_runtime_reuses_existing_dlls(self):
+        with patch.object(preparar.sys, 'platform', 'win32'), patch.object(preparar.ctypes, 'WinDLL', create=True), patch.object(preparar, 'download') as download, patch.object(preparar.subprocess, 'run') as run:
+            preparar.ensure_windows_runtime()
+            download.assert_not_called()
+            run.assert_not_called()
+
+    def test_windows_missing_runtime_requires_signed_installer_and_user_approval(self):
+        from unittest.mock import MagicMock
+        with tempfile.TemporaryDirectory() as directory, patch.object(preparar, 'ROOT', Path(directory)), patch.object(preparar.sys, 'platform', 'win32'), patch.object(preparar, 'machine', return_value='x86_64'), patch.object(preparar.ctypes, 'WinDLL', side_effect=[OSError('missing'), MagicMock(), MagicMock()], create=True), patch.object(preparar, 'download') as download, patch.object(preparar.subprocess, 'run') as run:
+            preparar.ensure_windows_runtime()
+            self.assertTrue(download.call_args.args[0].startswith('https://aka.ms/'))
+            command = run.call_args.args[0][-1]
+            self.assertIn('Get-AuthenticodeSignature', command)
+            self.assertIn('-Verb RunAs', command)
+            self.assertNotIn('ExecutionPolicy', command)
+
 
 if __name__ == '__main__':
     unittest.main()
